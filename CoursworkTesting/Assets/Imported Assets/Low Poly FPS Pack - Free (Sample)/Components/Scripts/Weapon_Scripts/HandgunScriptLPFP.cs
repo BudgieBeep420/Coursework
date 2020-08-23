@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // ----- Low Poly FPS Pack Free Version -----
-public class HandgunScriptLPFP : MonoBehaviour {
+public class HandgunScriptLpfp : MonoBehaviour {
 
 	//Animator component attached to weapon
 	Animator anim;
@@ -119,17 +120,17 @@ public class HandgunScriptLPFP : MonoBehaviour {
 	public Text totalAmmoText;
 
 	[System.Serializable]
-	public class prefabs
+	public class Prefabs
 	{  
 		[Header("Prefabs")]
 		public Transform bulletPrefab;
 		public Transform casingPrefab;
 		public Transform grenadePrefab;
 	}
-	public prefabs Prefabs;
+	[FormerlySerializedAs("Prefabs")] public Prefabs prefabs;
 	
 	[System.Serializable]
-	public class spawnpoints
+	public class Spawnpoints
 	{  
 		[Header("Spawnpoints")]
 		//Array holding casing spawn points 
@@ -140,10 +141,10 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		//Grenade prefab spawn from this point
 		public Transform grenadeSpawnPoint;
 	}
-	public spawnpoints Spawnpoints;
+	[FormerlySerializedAs("Spawnpoints")] public Spawnpoints spawnpoints;
 
 	[System.Serializable]
-	public class soundClips
+	public class SoundClips
 	{
 		public AudioClip shootSound;
 		public AudioClip takeOutSound;
@@ -152,7 +153,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		public AudioClip reloadSoundAmmoLeft;
 		public AudioClip aimSound;
 	}
-	public soundClips SoundClips;
+	[FormerlySerializedAs("SoundClips")] public SoundClips soundClips;
 
 	private bool soundHasPlayed = false;
 
@@ -178,21 +179,21 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		initialSwayPosition = transform.localPosition;
 
 		//Set the shoot sound to audio source
-		shootAudioSource.clip = SoundClips.shootSound;
+		shootAudioSource.clip = soundClips.shootSound;
 	}
 
 	private void LateUpdate () {
 		//Weapon sway
 		if (weaponSway == true) {
-			float movementX = -Input.GetAxis ("Mouse X") * swayAmount;
-			float movementY = -Input.GetAxis ("Mouse Y") * swayAmount;
+			var movementX = -Input.GetAxis ("Mouse X") * swayAmount;
+			var movementY = -Input.GetAxis ("Mouse Y") * swayAmount;
 			//Clamp movement to min and max values
 			movementX = Mathf.Clamp 
 				(movementX, -maxSwayAmount, maxSwayAmount);
 			movementY = Mathf.Clamp 
 				(movementY, -maxSwayAmount, maxSwayAmount);
 			//Lerp local pos
-			Vector3 finalSwayPosition = new Vector3 
+			var finalSwayPosition = new Vector3 
 				(movementX, movementY, 0);
 			transform.localPosition = Vector3.Lerp 
 				(transform.localPosition, finalSwayPosition + 
@@ -216,7 +217,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 
 			if (!soundHasPlayed) 
 			{
-				mainAudioSource.clip = SoundClips.aimSound;
+				mainAudioSource.clip = soundClips.aimSound;
 				mainAudioSource.Play ();
 	
 				soundHasPlayed = true;
@@ -335,7 +336,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 			//Remove 1 bullet from ammo
 			currentAmmo -= 1;
 
-			shootAudioSource.clip = SoundClips.shootSound;
+			shootAudioSource.clip = soundClips.shootSound;
 			shootAudioSource.Play ();
 
 			//Light flash start
@@ -384,18 +385,18 @@ public class HandgunScriptLPFP : MonoBehaviour {
 				
 			//Spawn bullet at bullet spawnpoint
 			var bullet = (Transform)Instantiate (
-				Prefabs.bulletPrefab,
-				Spawnpoints.bulletSpawnPoint.transform.position,
-				Spawnpoints.bulletSpawnPoint.transform.rotation);
+				prefabs.bulletPrefab,
+				spawnpoints.bulletSpawnPoint.transform.position,
+				spawnpoints.bulletSpawnPoint.transform.rotation);
 
 			//Add velocity to the bullet
 			bullet.GetComponent<Rigidbody>().velocity = 
 			bullet.transform.forward * bulletForce;
 
 			//Spawn casing prefab at spawnpoint
-			Instantiate (Prefabs.casingPrefab, 
-				Spawnpoints.casingSpawnPoint.transform.position, 
-				Spawnpoints.casingSpawnPoint.transform.rotation);
+			Instantiate (prefabs.casingPrefab, 
+				spawnpoints.casingSpawnPoint.transform.position, 
+				spawnpoints.casingSpawnPoint.transform.rotation);
 		}
 
 		//Inspect weapon when pressing T key
@@ -409,7 +410,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		{
 			holstered = true;
 
-			mainAudioSource.clip = SoundClips.holsterSound;
+			mainAudioSource.clip = soundClips.holsterSound;
 			mainAudioSource.Play();
 
 			hasBeenHolstered = true;
@@ -418,7 +419,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		{
 			holstered = false;
 
-			mainAudioSource.clip = SoundClips.takeOutSound;
+			mainAudioSource.clip = soundClips.takeOutSound;
 			mainAudioSource.Play ();
 
 			hasBeenHolstered = false;
@@ -489,9 +490,9 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		//Wait for set amount of time before spawning grenade
 		yield return new WaitForSeconds (grenadeSpawnDelay);
 		//Spawn grenade prefab at spawnpoint
-		Instantiate(Prefabs.grenadePrefab, 
-			Spawnpoints.grenadeSpawnPoint.transform.position, 
-			Spawnpoints.grenadeSpawnPoint.transform.rotation);
+		Instantiate(prefabs.grenadePrefab, 
+			spawnpoints.grenadeSpawnPoint.transform.position, 
+			spawnpoints.grenadeSpawnPoint.transform.rotation);
 	}
 
 	private IEnumerator AutoReload () {
@@ -509,7 +510,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 			//Play diff anim if out of ammo
 			anim.Play ("Reload Out Of Ammo", 0, 0f);
 
-			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
+			mainAudioSource.clip = soundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play ();
 
 			//If out of ammo, hide the bullet renderer in the mag
@@ -535,7 +536,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 			//Play diff anim if out of ammo
 			anim.Play ("Reload Out Of Ammo", 0, 0f);
 
-			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
+			mainAudioSource.clip = soundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play ();
 
 			//If out of ammo, hide the bullet renderer in the mag
@@ -553,7 +554,7 @@ public class HandgunScriptLPFP : MonoBehaviour {
 			//Play diff anim if ammo left
 			anim.Play ("Reload Ammo Left", 0, 0f);
 
-			mainAudioSource.clip = SoundClips.reloadSoundAmmoLeft;
+			mainAudioSource.clip = soundClips.reloadSoundAmmoLeft;
 			mainAudioSource.Play ();
 
 			//If reloading when ammo left, show bullet in mag

@@ -76,11 +76,11 @@ public class GrenadeScript : MonoBehaviour {
 		}
 
 		//Explosion force
-		Vector3 explosionPos = transform.position;
+		var explosionPos = transform.position;
 		//Use overlapshere to check for nearby colliders
-		Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-		foreach (Collider hit in colliders) {
-			Rigidbody rb = hit.GetComponent<Rigidbody> ();
+		var colliders = Physics.OverlapSphere(explosionPos, radius);
+		foreach (var hit in colliders) {
+			var rb = hit.GetComponent<Rigidbody> ();
 
 			//Add force to nearby rigidbodies
 			if (rb != null)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fruits_tester : MonoBehaviour {
+public class FruitsTester : MonoBehaviour {
 
 	public GameObject[] fruits;
 	// Use this for initialization

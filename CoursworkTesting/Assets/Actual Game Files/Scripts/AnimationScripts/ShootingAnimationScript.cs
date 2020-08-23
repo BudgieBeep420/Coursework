@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ShootingAnimationScript : StateMachineBehaviour
 {
+    private static readonly int HasShot = Animator.StringToHash("HasShot");
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("HasShot", false);
+        animator.SetBool(HasShot, false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

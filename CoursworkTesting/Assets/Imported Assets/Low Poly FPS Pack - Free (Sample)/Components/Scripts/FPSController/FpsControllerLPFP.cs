@@ -8,7 +8,7 @@ namespace FPSControllerLPFP
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(AudioSource))]
-    public class FpsControllerLPFP : MonoBehaviour
+    public class FpsControllerLpfp : MonoBehaviour
     {
 #pragma warning disable 649
 		[Header("Arms")]
@@ -57,32 +57,32 @@ namespace FPSControllerLPFP
         private FpsInput input;
 #pragma warning restore 649
 
-        private Rigidbody _rigidbody;
-        private CapsuleCollider _collider;
-        private AudioSource _audioSource;
-        private SmoothRotation _rotationX;
-        private SmoothRotation _rotationY;
-        private SmoothVelocity _velocityX;
-        private SmoothVelocity _velocityZ;
-        private bool _isGrounded;
+        private Rigidbody rigidbody;
+        private CapsuleCollider collider;
+        private AudioSource audioSource;
+        private SmoothRotation rotationX;
+        private SmoothRotation rotationY;
+        private SmoothVelocity velocityX;
+        private SmoothVelocity velocityZ;
+        private bool isGrounded;
 
-        private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
-        private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
+        private readonly RaycastHit[] groundCastResults = new RaycastHit[8];
+        private readonly RaycastHit[] wallCastResults = new RaycastHit[8];
 
         /// Initializes the FpsController on start.
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            _collider = GetComponent<CapsuleCollider>();
-            _audioSource = GetComponent<AudioSource>();
+            rigidbody = GetComponent<Rigidbody>();
+            rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            collider = GetComponent<CapsuleCollider>();
+            audioSource = GetComponent<AudioSource>();
 			arms = AssignCharactersCamera();
-            _audioSource.clip = walkingSound;
-            _audioSource.loop = true;
-            _rotationX = new SmoothRotation(RotationXRaw);
-            _rotationY = new SmoothRotation(RotationYRaw);
-            _velocityX = new SmoothVelocity();
-            _velocityZ = new SmoothVelocity();
+            audioSource.clip = walkingSound;
+            audioSource.loop = true;
+            rotationX = new SmoothRotation(RotationXRaw);
+            rotationY = new SmoothRotation(RotationYRaw);
+            velocityX = new SmoothVelocity();
+            velocityZ = new SmoothVelocity();
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
         }
@@ -118,18 +118,18 @@ namespace FPSControllerLPFP
         /// Checks if the character is on the ground.
         private void OnCollisionStay()
         {
-            var bounds = _collider.bounds;
+            var bounds = collider.bounds;
             var extents = bounds.extents;
             var radius = extents.x - 0.01f;
             Physics.SphereCastNonAlloc(bounds.center, radius, Vector3.down,
-                _groundCastResults, extents.y - radius * 0.5f, ~0, QueryTriggerInteraction.Ignore);
-            if (!_groundCastResults.Any(hit => hit.collider != null && hit.collider != _collider)) return;
-            for (var i = 0; i < _groundCastResults.Length; i++)
+                groundCastResults, extents.y - radius * 0.5f, ~0, QueryTriggerInteraction.Ignore);
+            if (!groundCastResults.Any(hit => hit.collider != null && hit.collider != collider)) return;
+            for (var i = 0; i < groundCastResults.Length; i++)
             {
-                _groundCastResults[i] = new RaycastHit();
+                groundCastResults[i] = new RaycastHit();
             }
 
-            _isGrounded = true;
+            isGrounded = true;
         }
 			
         /// Processes the character movement and the camera rotation every fixed framerate frame.
@@ -138,7 +138,7 @@ namespace FPSControllerLPFP
             // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
             RotateCameraAndCharacter();
             MoveCharacter();
-            _isGrounded = false;
+            isGrounded = false;
         }
 			
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
@@ -151,10 +151,10 @@ namespace FPSControllerLPFP
 
         private void RotateCameraAndCharacter()
         {
-            var rotationX = _rotationX.Update(RotationXRaw, rotationSmoothness);
-            var rotationY = _rotationY.Update(RotationYRaw, rotationSmoothness);
+            var rotationX = this.rotationX.Update(RotationXRaw, rotationSmoothness);
+            var rotationY = this.rotationY.Update(RotationYRaw, rotationSmoothness);
             var clampedY = RestrictVerticalRotation(rotationY);
-            _rotationY.Current = clampedY;
+            this.rotationY.Current = clampedY;
 			var worldUp = arms.InverseTransformDirection(Vector3.up);
 			var rotation = arms.rotation *
                            Quaternion.AngleAxis(rotationX, worldUp) *
@@ -212,34 +212,34 @@ namespace FPSControllerLPFP
             var intersectsWall = CheckCollisionsWithWalls(velocity);
             if (intersectsWall)
             {
-                _velocityX.Current = _velocityZ.Current = 0f;
+                velocityX.Current = velocityZ.Current = 0f;
                 return;
             }
 
-            var smoothX = _velocityX.Update(velocity.x, movementSmoothness);
-            var smoothZ = _velocityZ.Update(velocity.z, movementSmoothness);
-            var rigidbodyVelocity = _rigidbody.velocity;
+            var smoothX = velocityX.Update(velocity.x, movementSmoothness);
+            var smoothZ = velocityZ.Update(velocity.z, movementSmoothness);
+            var rigidbodyVelocity = rigidbody.velocity;
             var force = new Vector3(smoothX - rigidbodyVelocity.x, 0f, smoothZ - rigidbodyVelocity.z);
-            _rigidbody.AddForce(force, ForceMode.VelocityChange);
+            rigidbody.AddForce(force, ForceMode.VelocityChange);
         }
 
         private bool CheckCollisionsWithWalls(Vector3 velocity)
         {
-            if (_isGrounded) return false;
-            var bounds = _collider.bounds;
-            var radius = _collider.radius;
-            var halfHeight = _collider.height * 0.5f - radius * 1.0f;
+            if (isGrounded) return false;
+            var bounds = collider.bounds;
+            var radius = collider.radius;
+            var halfHeight = collider.height * 0.5f - radius * 1.0f;
             var point1 = bounds.center;
             point1.y += halfHeight;
             var point2 = bounds.center;
             point2.y -= halfHeight;
-            Physics.CapsuleCastNonAlloc(point1, point2, radius, velocity.normalized, _wallCastResults,
+            Physics.CapsuleCastNonAlloc(point1, point2, radius, velocity.normalized, wallCastResults,
                 radius * 0.04f, ~0, QueryTriggerInteraction.Ignore);
-            var collides = _wallCastResults.Any(hit => hit.collider != null && hit.collider != _collider);
+            var collides = wallCastResults.Any(hit => hit.collider != null && hit.collider != collider);
             if (!collides) return false;
-            for (var i = 0; i < _wallCastResults.Length; i++)
+            for (var i = 0; i < wallCastResults.Length; i++)
             {
-                _wallCastResults[i] = new RaycastHit();
+                wallCastResults[i] = new RaycastHit();
             }
 
             return true;
@@ -247,26 +247,26 @@ namespace FPSControllerLPFP
 
         private void Jump()
         {
-            if (!_isGrounded || !input.Jump) return;
-            _isGrounded = false;
-            _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (!isGrounded || !input.Jump) return;
+            isGrounded = false;
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
         private void PlayFootstepSounds()
         {
-            if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
+            if (isGrounded && rigidbody.velocity.sqrMagnitude > 0.1f)
             {
-                _audioSource.clip = input.Run ? runningSound : walkingSound;
-                if (!_audioSource.isPlaying)
+                audioSource.clip = input.Run ? runningSound : walkingSound;
+                if (!audioSource.isPlaying)
                 {
-                    _audioSource.Play();
+                    audioSource.Play();
                 }
             }
             else
             {
-                if (_audioSource.isPlaying)
+                if (audioSource.isPlaying)
                 {
-                    _audioSource.Pause();
+                    audioSource.Pause();
                 }
             }
         }
@@ -274,41 +274,41 @@ namespace FPSControllerLPFP
         /// A helper for assistance with smoothing the camera rotation.
         private class SmoothRotation
         {
-            private float _current;
-            private float _currentVelocity;
+            private float current;
+            private float currentVelocity;
 
             public SmoothRotation(float startAngle)
             {
-                _current = startAngle;
+                current = startAngle;
             }
 				
             /// Returns the smoothed rotation.
             public float Update(float target, float smoothTime)
             {
-                return _current = Mathf.SmoothDampAngle(_current, target, ref _currentVelocity, smoothTime);
+                return current = Mathf.SmoothDampAngle(current, target, ref currentVelocity, smoothTime);
             }
 
             public float Current
             {
-                set { _current = value; }
+                set { current = value; }
             }
         }
 			
         /// A helper for assistance with smoothing the movement.
         private class SmoothVelocity
         {
-            private float _current;
-            private float _currentVelocity;
+            private float current;
+            private float currentVelocity;
 
             /// Returns the smoothed velocity.
             public float Update(float target, float smoothTime)
             {
-                return _current = Mathf.SmoothDamp(_current, target, ref _currentVelocity, smoothTime);
+                return current = Mathf.SmoothDamp(current, target, ref currentVelocity, smoothTime);
             }
 
             public float Current
             {
-                set { _current = value; }
+                set { current = value; }
             }
         }
 			

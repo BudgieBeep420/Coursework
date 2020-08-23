@@ -13,23 +13,23 @@ namespace SNAP
     public class PackageChecker
     {
 
-        private static ListRequest listRequest;
-        private static List<PackageEntry> packageToAdd;
+        private static ListRequest _listRequest;
+        private static List<PackageEntry> _packageToAdd;
 
-        private static AddRequest[] addRequests;
-        private static bool[] installRequired;
+        private static AddRequest[] _addRequests;
+        private static bool[] _installRequired;
 
-        private static string PackageKeyword = "Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/";
+        private static string _packageKeyword = "Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/";
 
 
         [InitializeOnLoadMethod]
         static void CheckPackage()
         {
-            string filePath = Application.dataPath + "/../Library/PackageChecked";
+            var filePath = Application.dataPath + "/../Library/PackageChecked";
 
  
-            packageToAdd = new List<PackageEntry>();
-            listRequest = null;
+            _packageToAdd = new List<PackageEntry>();
+            _listRequest = null;
 
              
             if (!File.Exists(filePath))
@@ -41,59 +41,59 @@ namespace SNAP
                 }
                 else
                 {
-                    string packageListPath = packageListFile[0];
-                    packageToAdd = new List<PackageEntry>();
-                    string[] content = File.ReadAllLines(packageListPath);
+                    var packageListPath = packageListFile[0];
+                    _packageToAdd = new List<PackageEntry>();
+                    var content = File.ReadAllLines(packageListPath);
                     foreach (var line in content)
                     {
                         var split = line.Split('@');
-                        PackageEntry entry = new PackageEntry();
+                        var entry = new PackageEntry();
 
                         entry.name = split[0];
                         entry.version = split.Length > 1 ? split[1] : null;
 
-                        packageToAdd.Add(entry);
+                        _packageToAdd.Add(entry);
                     }
 
                     File.WriteAllText(filePath, "Delete this to trigger a new auto package check");
 
-                    listRequest = Client.List();
+                    _listRequest = Client.List();
 
-                    while (!listRequest.IsCompleted)
+                    while (!_listRequest.IsCompleted)
                     {
-                        if (listRequest.Status == StatusCode.Failure || listRequest.Error != null)
+                        if (_listRequest.Status == StatusCode.Failure || _listRequest.Error != null)
                         {
-                            Debug.LogError(listRequest.Error.message);
+                            Debug.LogError(_listRequest.Error.message);
                             break;
                         }
                     }
 
-                    addRequests = new AddRequest[packageToAdd.Count];
+                    _addRequests = new AddRequest[_packageToAdd.Count];
 
-                    installRequired = new bool[packageToAdd.Count];
+                    _installRequired = new bool[_packageToAdd.Count];
 
-                    for (int i = 0; i < installRequired.Length; i++)
-                        installRequired[i] = true;
+                    for (var i = 0; i < _installRequired.Length; i++)
+                        _installRequired[i] = true;
 
                      
                     
-                    foreach (var package in listRequest.Result)
+                    foreach (var package in _listRequest.Result)
                     {
-                        for (int i = 0; i < packageToAdd.Count; i++)
+                        for (var i = 0; i < _packageToAdd.Count; i++)
                         {
-                            if (package.packageId.Contains(packageToAdd[i].name))
+                            if (package.packageId.Contains(_packageToAdd[i].name))
                             {
-                                installRequired[i] = false;
+                                _installRequired[i] = false;
 
                                 if (package.versions.latestCompatible != "" && package.version != "")
                                 {
 
                                     if (GreaterThan(package.versions.latestCompatible, package.version))
                                     {
-                                        installRequired[i] = EditorUtility.DisplayDialog("Confirm Package Upgrade", string.Format("The version of \"{0}\" in this project is not the latest version. Would you like to upgrade it to the latest version? (Recommmended)", packageToAdd[i].name), "Yes", "No");
+                                        _installRequired[i] = EditorUtility.DisplayDialog("Confirm Package Upgrade", string.Format("The version of \"{0}\" in this project is not the latest version. Would you like to upgrade it to the latest version? (Recommmended)", _packageToAdd[i].name), "Yes", "No");
 
-                                        if (installRequired[i])
-                                            packageToAdd[i].version = package.versions.latestCompatible;
+                                        if (_installRequired[i])
+                                            _packageToAdd[i].version = package.versions.latestCompatible;
 
                                     }
                                 }
@@ -103,10 +103,10 @@ namespace SNAP
                     }
                 
 
-                    for (int i = 0; i < packageToAdd.Count; i++)
+                    for (var i = 0; i < _packageToAdd.Count; i++)
                     {
-                        if (installRequired[i])
-                            addRequests[i] = InstallSelectedPackage(packageToAdd[i].name, packageToAdd[i].version);
+                        if (_installRequired[i])
+                            _addRequests[i] = InstallSelectedPackage(_packageToAdd[i].name, _packageToAdd[i].version);
                     }
 
 
@@ -126,7 +126,7 @@ namespace SNAP
                 packageName = packageName + "@" + packageVersion;
 
 
-            AddRequest newPackage = Client.Add(packageName);
+            var newPackage = Client.Add(packageName);
 
             while (!newPackage.IsCompleted)
             {
@@ -146,7 +146,7 @@ namespace SNAP
         {
 
             AssetDatabase.Refresh();
-            AssetDatabase.ImportAsset(PackageKeyword, ImportAssetOptions.ImportRecursive);
+            AssetDatabase.ImportAsset(_packageKeyword, ImportAssetOptions.ImportRecursive);
 
         }
 
@@ -157,10 +157,10 @@ namespace SNAP
             var versionASplit = versionA.Split('.');
             var versionBSplit = versionB.Split('.');
 
-            int previewA = 0;
-            int previewB = 0;
-            int patchA = 0;
-            int patchB = 0;
+            var previewA = 0;
+            var previewB = 0;
+            var patchA = 0;
+            var patchB = 0;
 
             var majorA = Convert.ToInt32(versionASplit[0]);
             var minorA = Convert.ToInt32(versionASplit[1]);
