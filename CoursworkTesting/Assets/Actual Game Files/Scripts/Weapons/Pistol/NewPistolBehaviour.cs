@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.IO.Pipes;
 using Actual_Game_Files.Scripts;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class NewPistolBehaviour : GenericWeaponBehaviour
 {
@@ -15,21 +18,23 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     [SerializeField] private Animator pistolAnimator;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private GameObject whereCasingsSpawn;
-    [SerializeField] private GameObject casingsBin;
+    [SerializeField] private Text ammoText;
+    [SerializeField] private Text magazineText;
     [Space]
             
     [Header("Game Settings")]
     [SerializeField] private float timeBetweenShots;
-    [SerializeField] private float pistolInaccuracyInDegrees = 10f;
+    [SerializeField] private float pistolInaccuracyInDegrees;
+    [SerializeField] private Magazine[] magazineArray;
+    [SerializeField] private int weaponMagCapacity;
     [Space]
 
     [Header("SoundNames")]
     [SerializeField] private string pistolShotSoundName;
     [Space]
         
-    private bool canShoot = true;
-    private static readonly int HasShot = Animator.StringToHash("HasShot");
-    
+    private readonly bool canShoot = true;
+    private readonly bool canReload = true;
     
     protected override GameObject ShotBullet { get; set; }
     protected override GameObject BulletCasing { get; set; }
@@ -37,11 +42,16 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     protected override GameObject EndOfBarrel { get; set; }
     protected override Animator WeaponAnimator { get; set; }
     protected override AudioManager AudioManager { get; set; }
-    protected override GameObject CasingsBin { get; set; }
+    protected override Text AmmoText { get; set; }
+    protected override Text MagazineText { get; set; }
     protected override float TimeBetweenShots { get; set; }
     protected override float WeaponInaccuracyInDegrees { get; set; }
+    protected override Magazine[] MagazineArray { get; set; }
+    protected override int WeaponMagCapacity { get; set; }
     protected override string WeaponShotSoundName { get; set; }
     protected override bool CanShoot { get; set; }
+    protected override bool CanReload { get; set; }
+
 
     private void Awake()
     {
@@ -54,12 +64,17 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
         WeaponInaccuracyInDegrees = pistolInaccuracyInDegrees;
         WeaponShotSoundName = pistolShotSoundName;
         CanShoot = canShoot;
+        CanReload = canReload;
         WhereCasingSpawns = whereCasingsSpawn;
-        CasingsBin = casingsBin;
+        MagazineArray = magazineArray;
+        AmmoText = ammoText;
+        WeaponMagCapacity = weaponMagCapacity;
+        MagazineText = magazineText;
     }
 
     private void Update()
     {
         ShootingWeaponCheck();
+        CheckReload();
     }
 }

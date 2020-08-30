@@ -10,6 +10,8 @@ TagManager:
   - Environment
   - Enemies
   - BulletBin
+  - Casing
+  - CasingsBin
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - Ground
   - Post Processing
   - Environment
-  - 
+  - Enemy
   - 
   - 
   - 

@@ -44,7 +44,7 @@ public class HandgunBehaviour : MonoBehaviour
             if (!Input.GetKeyDown(KeyCode.Mouse0) || !canShoot) return;
             
             pistolAnimator.SetBool(HasShot, true);
-            audioManager.Play(pistolShotSoundName);
+            /*audioManager.Play(pistolShotSoundName);*/
             var bullet = Instantiate(shotBullet, endOfBarrel.transform.position, GenerateRandomBulletRotation(endOfBarrel.transform.rotation, pistolInaccuracyInDegrees));
             bulletRb.velocity = bullet.transform.up * (bulletSpeed * Time.deltaTime);
             bullet.transform.SetParent(bulletBin.transform);

@@ -1,14 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingAnimationScript : StateMachineBehaviour
+public class WeaponSwayAnim : StateMachineBehaviour
 {
     private static readonly int HasShot = Animator.StringToHash("HasShot");
+    
+    private float _normalizedLeavingPoint;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        /*
+        if (Math.Abs(_normalizedLeavingPoint) > 0.1f)
+        {
+            animator.Play("Weaponsway", 0, _normalizedLeavingPoint);
+            _normalizedLeavingPoint = 0;
+        }
+        */
+
         animator.SetBool(HasShot, false);
     }
 
@@ -19,10 +30,10 @@ public class ShootingAnimationScript : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        _normalizedLeavingPoint = stateInfo.normalizedTime;
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
