@@ -20,6 +20,7 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     [SerializeField] private GameObject whereCasingsSpawn;
     [SerializeField] private Text ammoText;
     [SerializeField] private Text magazineText;
+    [SerializeField] private AudioSource audioSource;
     [Space]
             
     [Header("Game Settings")]
@@ -27,15 +28,13 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     [SerializeField] private float pistolInaccuracyInDegrees;
     [SerializeField] private Magazine[] magazineArray;
     [SerializeField] private int weaponMagCapacity;
+    [SerializeField] private string weaponReloadSoundName;
+    [SerializeField] private float weaponReloadTime = 2f;
     [Space]
 
     [Header("SoundNames")]
     [SerializeField] private string pistolShotSoundName;
-    [Space]
-        
-    private readonly bool canShoot = true;
-    private readonly bool canReload = true;
-    
+
     protected override GameObject ShotBullet { get; set; }
     protected override GameObject BulletCasing { get; set; }
     protected override GameObject WhereCasingSpawns { get; set; }
@@ -49,6 +48,11 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     protected override Magazine[] MagazineArray { get; set; }
     protected override int WeaponMagCapacity { get; set; }
     protected override string WeaponShotSoundName { get; set; }
+    protected override string WeaponReloadSoundName { get; set; }
+    protected override bool IsWeaponFullyAutomatic { get; set; }
+    protected override bool IsWeaponShotgun { get; set; }
+    protected override float WeaponReloadTime { get; set; }
+    protected override AudioSource ThisAudioSource { get; set; }
     protected override bool CanShoot { get; set; }
     protected override bool CanReload { get; set; }
 
@@ -63,13 +67,18 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
         TimeBetweenShots = timeBetweenShots;
         WeaponInaccuracyInDegrees = pistolInaccuracyInDegrees;
         WeaponShotSoundName = pistolShotSoundName;
-        CanShoot = canShoot;
-        CanReload = canReload;
+        CanShoot = true;
+        CanReload = true;
         WhereCasingSpawns = whereCasingsSpawn;
         MagazineArray = magazineArray;
         AmmoText = ammoText;
         WeaponMagCapacity = weaponMagCapacity;
         MagazineText = magazineText;
+        IsWeaponFullyAutomatic = false;
+        IsWeaponShotgun = false;
+        WeaponReloadSoundName = weaponReloadSoundName;
+        WeaponReloadTime = weaponReloadTime;
+        ThisAudioSource = audioSource;
     }
 
     private void Update()

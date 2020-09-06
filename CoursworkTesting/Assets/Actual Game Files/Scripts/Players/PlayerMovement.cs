@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed = 10f; 
     [SerializeField] private float strengthOfGravity = 13f;
     [SerializeField] private float groundDistanceCheck = 0.4f;
-    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float jumpHeight = 1f;
     [Space]
 
     private float _xRotation;
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         UpdateEscapeMenu();
         IsPlayerRunning();
@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdatePlayerSound()
     {
-        if (_isPlayerGrounded && _vel > 2 && !feetAudioSource.isPlaying)
+        if (_isPlayerGrounded && _vel > 2 && !feetAudioSource.isPlaying || Input.GetKeyUp(KeyCode.LeftShift))
             audioManager.Play("WalkingSound", feetAudioSource);
         
         if (_isPlayerGrounded && Input.GetKey(KeyCode.LeftShift) && _vel > 3  && (feetAudioSource.clip.name == "walking_loop" || !feetAudioSource.isPlaying))

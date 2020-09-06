@@ -30,15 +30,19 @@ public class PistolScript : MonoBehaviour
     
     private static readonly int HasShot = Animator.StringToHash("HasShot");
     private const float CasingRotation = 20f;
+    private static Transform _playerTransform;
     private AudioSource _thisAudioSource;
 
     private void Awake()
     {
         _thisAudioSource = gameObject.GetComponent<AudioSource>();
+        _playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     public void Shoot()
     {
+        if (_playerTransform == null) return;
+        
         if (numberOfBullets == 0)
         {
             audioManager.Play("OutOfAmmoClick", _thisAudioSource);
@@ -88,4 +92,6 @@ public class PistolScript : MonoBehaviour
             GenerateRandomCasingRotation(whereCasingSpawns.transform.rotation, CasingRotation);
     }
     
+    public void PlayTakingOutSound()
+    {}
 }

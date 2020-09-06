@@ -2,28 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Lean.Transition;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public abstract class GenericBulletBehaviour : MonoBehaviour
 {
     protected abstract Rigidbody ThisBulletRb { get; set; }
     protected abstract GameObject ThisBullet { get; set; }
-    protected abstract GameObject BulletBin { get; set; }
+    protected abstract GameObject BulletBin { get; set; } 
+    protected abstract GameObject BloodSquirt { get; set; }
+    protected abstract PlayerBehaviourScript PlayerBehaviourScript { get; set; }
     
     protected abstract float BulletDamage { get; set; }
+    protected abstract float BulletPushBack { get; set; }
 
     protected abstract float BulletSpeed { get; set; }
-    private int _environmentLayer;
+    private const int EnvironmentLayer = 10;
     private int _enemyLayer;
+    private Vector3 _pushBack;
 
     public float lifetimeOfBullet;
 
-    private void Awake()
+    private void Start()
     {
-        _environmentLayer = LayerMask.NameToLayer("Environment");
+        _pushBack = transform.forward.normalized * BulletPushBack;
     }
-
     private void Update()
     {
         UpdateLifetimeCounter();
@@ -32,27 +37,38 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
     public void OnTriggerEnter(Collider col)
     {
         if (lifetimeOfBullet < 0.005f) return;
+        if (lifetimeOfBullet > 3) Destroy(gameObject);
         
         if (col.CompareTag("Enemies"))
         {
             Debug.Log("Enemy hit!");
-            col.GetComponent<EnemyScript>().TakeDamage(BulletDamage);
+            col.GetComponent<EnemyScript>().TakeDamage(GenerateRandomBulletDmg(BulletDamage));
+            Instantiate(BloodSquirt, transform.position, Quaternion.Euler(new Vector3(-115, 0, 0)));
         }
 
         if (col.CompareTag("Player"))
         {
+            PlayerBehaviourScript.TakeDamage(GenerateRandomBulletDmg(BulletDamage));
             Debug.Log("Player Hit!");
+            col.GetComponent<CharacterController>().Move(_pushBack);
         }
-    }
 
-    /*private static void UpdateEnemyHealth(GameObject enemyObject)
+        if (col.gameObject.layer == EnvironmentLayer)
+        {
+            Debug.Log("Environment Hit");
+        }
+
+        Destroy(gameObject);
+    }
+    
+    private static float GenerateRandomBulletDmg(float baseDamage)
     {
-        Debug.Log(enemyObject.name);
-        enemyObject.GetComponent<EnemyScript>().enemyLifeCount--;
-        if (enemyObject.GetComponent<EnemyScript>().enemyLifeCount != 0) return;
-        Destroy(enemyObject);
-    }*/
-    protected void SetBulletSpeedAndTrajectory()
+        var lower = Convert.ToSingle(baseDamage - 0.1 * baseDamage);
+        var upper = Convert.ToSingle(baseDamage + 0.1 * baseDamage);
+        return Convert.ToSingle(Math.Round(Random.Range(lower, upper)));
+    }
+    
+    protected void SetBulletSpeed()
     {
         ThisBulletRb.velocity = ThisBullet.transform.up * (BulletSpeed * Time.deltaTime);
     }

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Resources;
 using System.Security.Cryptography;
+using Actual_Game_Files.Scripts;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Analytics;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour
@@ -19,24 +23,28 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private GameObject enemyWeapon;
+    [SerializeField] private AudioSource thisAudioSource;
+    [SerializeField] private GameObject deathAudioObject;
 
     private float _timeToStartEngaging;
     private bool _hasSeenPlayer;
     private PistolScript _pistolScript;
+    private AudioManager _audioManager;
     
     private void Start()
     {
         _pistolScript = enemyWeapon.GetComponent<PistolScript>();
-    }
-
-    private void Awake()
-    {
-        _timeToStartEngaging = Random.Range(0f, 1f);
+        _audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+        _timeToStartEngaging = Random.Range(0f, 2f);
     }
 
     private void Update()
     {
-        CheckEnemyFieldOfView();
+        if(playerTransform != null && CanSeePlayer(
+            Vector3.Distance(playerTransform.position, transform.position)))
+        {
+            CheckEnemyFieldOfView();
+        }
     }
 
     public void TakeDamage(float damage)
@@ -44,7 +52,16 @@ public class EnemyScript : MonoBehaviour
         health -= damage;
 
         if (health < 1)
-            Destroy(gameObject);
+            Die();
+        else
+            _audioManager.Play("DamageTakenSound", thisAudioSource);
+    }
+
+    private void Die()
+    {
+        deathAudioObject.transform.parent = null;
+        _audioManager.Play("DeathSound", deathAudioObject.GetComponent<AudioSource>());
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
@@ -53,8 +70,26 @@ public class EnemyScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, enemyViewRadius);
     }
 
+    private bool CanSeePlayer(float distance)
+    {
+        var isBlocked = false;
+        var ray = new Ray(transform.position, 
+            (playerTransform.position - transform.position).normalized); ;
+        
+        if (Physics.Raycast(ray, out var hit, distance))
+        {
+            if (hit.collider.gameObject.layer == 10 || hit.collider.gameObject.layer == 11)
+            {
+                isBlocked = true;
+            }
+        }
+        return !isBlocked;
+    }
+
     private void CheckEnemyFieldOfView()
     {
+        if (playerTransform == null) return;
+        
         var distance = Vector3.Distance(playerTransform.position, transform.position);
         
         if (distance > enemyViewRadius) return;

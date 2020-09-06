@@ -10,7 +10,7 @@ namespace Actual_Game_Files.Scripts
         [SerializeField] public string soundName;
         [SerializeField] public AudioClip audioClip;
         [SerializeField] public AudioSource audioSource;
-        [SerializeField] [Range(0f, 1f)] private float volume;
-        [SerializeField] [Range(.1f, 3f)] private float pitch;
+        [SerializeField] [Range(0f, 1f)] public float volume;
+        [SerializeField] [Range(.1f, 3f)] public float pitch;
     }
 }

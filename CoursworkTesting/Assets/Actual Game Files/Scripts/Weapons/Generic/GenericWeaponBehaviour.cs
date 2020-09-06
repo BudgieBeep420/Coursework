@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using UnityEditor;
@@ -21,14 +22,16 @@ namespace Actual_Game_Files.Scripts
         protected abstract AudioManager AudioManager { get; set; }
         protected abstract Text AmmoText { get; set; }
         protected abstract Text MagazineText { get; set; }
-
         protected abstract float TimeBetweenShots { get; set; }
         protected abstract float WeaponInaccuracyInDegrees { get; set; }
         protected abstract Magazine[] MagazineArray { get; set; }
         protected abstract int WeaponMagCapacity { get; set; }
-
-
         protected abstract string WeaponShotSoundName { get; set; }
+        protected abstract string WeaponReloadSoundName { get; set; }
+        protected abstract bool IsWeaponFullyAutomatic { get; set; }
+        protected abstract bool IsWeaponShotgun { get; set; }
+        protected abstract float WeaponReloadTime { get; set; }
+        protected abstract AudioSource ThisAudioSource { get; set; }
 
         protected abstract bool CanShoot { get; set; }
         private static readonly int HasShot = Animator.StringToHash("HasShot");
@@ -36,34 +39,51 @@ namespace Actual_Game_Files.Scripts
         protected abstract bool CanReload { get; set; }
 
         private const float CasingRotation = 20;
+        private const float ShotgunStartingOffset = 0.1f;
+        private const int NumberOfShotgunPellets = 10;
         private int _currentLoadedMag;
-        private AudioSource _thisAudioSource;
-
 
         private void Start()
         {
-            _thisAudioSource = gameObject.GetComponent<AudioSource>();
-            UpdateMagazineAndAmmoCount(0);
+            UpdateMagazineAndAmmoCount(_currentLoadedMag);
+        }
+
+        private void OnEnable()
+        {
+            UpdateMagazineAndAmmoCount(_currentLoadedMag);
         }
 
         protected void ShootingWeaponCheck()
         {
             var currentMagAmmo = MagazineArray[_currentLoadedMag].numOfBulletsInMag;
             
-            if(currentMagAmmo == 0 && Input.GetKeyDown(KeyCode.Mouse0)) AudioManager.Play("OutOfAmmoClick", _thisAudioSource);
-                
-            if (!Input.GetKeyDown(KeyCode.Mouse0) || !CanShoot || currentMagAmmo == 0) return;
+            if(currentMagAmmo == 0 && Input.GetKeyDown(KeyCode.Mouse0)) AudioManager.Play("OutOfAmmoClick", ThisAudioSource);
             
-            WeaponAnimator.SetBool(HasShot, true);
-            AudioManager.Play(WeaponShotSoundName, _thisAudioSource);
-            MagazineArray[_currentLoadedMag].numOfBulletsInMag -= 1;
-            AmmoText.text = "Ammo: " + MagazineArray[_currentLoadedMag].numOfBulletsInMag + "/ " + WeaponMagCapacity;
-            Instantiate(ShotBullet, EndOfBarrel.transform.position,
-                GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
-            StartCoroutine(ShootingCooldown(TimeBetweenShots));
-            SpawnBulletCasing();
+            if (Input.GetKeyDown(KeyCode.Mouse0) && CanShoot && currentMagAmmo != 0)
+            {
+                WeaponAnimator.SetBool(HasShot, true);
+                AudioManager.Play(WeaponShotSoundName, ThisAudioSource);
+                MagazineArray[_currentLoadedMag].numOfBulletsInMag -= 1;
+                AmmoText.text = "Ammo: " + MagazineArray[_currentLoadedMag].numOfBulletsInMag + "/ " +
+                                WeaponMagCapacity;
+                if (!IsWeaponShotgun)
+                {
+                    Instantiate(ShotBullet, EndOfBarrel.transform.position,
+                        GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
+                }
+                else
+                {
+                    for(var i = 0; i <= NumberOfShotgunPellets; i++)
+                        Instantiate(ShotBullet, 
+                            GenerateRandomBulletStartingPosition(EndOfBarrel.transform.position, ShotgunStartingOffset),
+                            GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
+                }
+                
+                StartCoroutine(ShootingCooldown(TimeBetweenShots));
+                SpawnBulletCasing();
+            }
         }
-
+        
         private static Quaternion GenerateRandomBulletRotation(Quaternion initialRotation, float inaccuracy)
         {
             var randomX = Random.Range(-inaccuracy, inaccuracy) + 0.75;
@@ -80,6 +100,15 @@ namespace Actual_Game_Files.Scripts
             var randomZ = Random.Range(-inaccuracy, inaccuracy);
 
             return Quaternion.Euler(randomX, randomY, randomZ) * initialRotation;
+        }
+
+        private static Vector3 GenerateRandomBulletStartingPosition(Vector3 startingPosition, float potentialOffset)
+        {
+            var randomX = Random.Range(-potentialOffset, potentialOffset);
+            var randomY = Random.Range(-potentialOffset, potentialOffset);
+            var randomZ = Random.Range(-potentialOffset, potentialOffset);
+            
+            return new Vector3(randomX, randomY, randomZ) + startingPosition;
         }
 
         private IEnumerator ShootingCooldown(float time)
@@ -106,13 +135,13 @@ namespace Actual_Game_Files.Scripts
                 GenerateRandomCasingRotation(WhereCasingSpawns.transform.rotation, CasingRotation);
         }
 
-        private void Reload()
+        private void Reload(float weaponReloadTime)
         {
             if (WeaponAnimator.GetBool(IsReloading) || !CanReload) return;
             
             WeaponAnimator.SetBool(IsReloading, true);
-            AudioManager.Play("PistolReloadSound1", _thisAudioSource);
-            StartCoroutine(ReloadCooldown(2));
+            AudioManager.Play(WeaponReloadSoundName, ThisAudioSource);
+            StartCoroutine(ReloadCooldown(weaponReloadTime));
             var desiredMagIndex = 0;
             var currentLargest = 0;
             
@@ -129,8 +158,8 @@ namespace Actual_Game_Files.Scripts
 
         protected void CheckReload()
         {
-            if (!Input.GetKeyDown(KeyCode.R)) return;
-            Reload();
+            if (!Input.GetKeyDown(KeyCode.R) || MagazineArray.All(mag => mag.numOfBulletsInMag == 0)) return;
+            Reload(WeaponReloadTime);
         }
 
         private void UpdateMagazineAndAmmoCount(int magReloaded)
@@ -146,6 +175,16 @@ namespace Actual_Game_Files.Scripts
             }
             
             MagazineText.text = "Magazines: " + string.Join(" - ", tempList);
+        }
+
+        protected void DisableWeapon()
+        {
+            gameObject.SetActive(false);
+        }
+        
+        private void PlayTakingOutSound()
+        {
+            if(ThisAudioSource != null) AudioManager.Play("WeaponUnholstering", ThisAudioSource);
         }
     }
 

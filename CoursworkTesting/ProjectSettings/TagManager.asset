@@ -12,6 +12,7 @@ TagManager:
   - BulletBin
   - Casing
   - CasingsBin
+  - AudioManager
   layers:
   - Default
   - TransparentFX
