@@ -1,19 +1,49 @@
 ﻿using System;
+using System.Dynamic;
+using System.IO;
 using System.Runtime.Remoting.Messaging;
+using Lean.Transition;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.UI;
+using UnityEngine.XR.WSA.Input;
 
 namespace Actual_Game_Files.Scripts
 {
     public class AudioManager : MonoBehaviour
     {
+        [Header("Sounds")]
         [SerializeField] public Sound[] sounds;
-
-        private void Start()
-        {
-            AudioListener.volume = 0.5f;
-        }
+        [Space]
         
+        [Header("GameObjects")]
+        [SerializeField] public AudioSource musicSource;
+        [SerializeField] private Slider globalVolSlider;
+        [SerializeField] private Slider pitchSlider;
+        [SerializeField] private Slider musicVolSlider;
+        [Space]
+
+
+        public AudioSettingsProfile audioSettingsProfile;
+        private string _audioSettingsDirectory;
+
+
+        private void Awake()
+        {
+            _audioSettingsDirectory = Application.dataPath + @"\Settings\AudioSettings.json";
+            audioSettingsProfile = JsonUtility.FromJson<AudioSettingsProfile>(File.ReadAllText(_audioSettingsDirectory));
+            PlayMusic();
+        }
+
+        public void WriteAudioSettings()
+        {
+            audioSettingsProfile.globalVolume = globalVolSlider.value;
+            audioSettingsProfile.pitch = pitchSlider.value * 3;
+            audioSettingsProfile.musicVolume = musicVolSlider.value;
+            File.WriteAllText(_audioSettingsDirectory, JsonUtility.ToJson(audioSettingsProfile));
+            PlayMusic();
+        }
+
         public void Play(string nameOfSound, AudioSource desiredAudioSource)
         {
             if (desiredAudioSource == null)
@@ -22,6 +52,7 @@ namespace Actual_Game_Files.Scripts
                 return;
             }
             
+            // ReSharper disable once InconsistentNaming
             var _sound = Array.Find(sounds,sound => sound.soundName == nameOfSound);
             _sound.audioSource = desiredAudioSource;
 
@@ -32,10 +63,19 @@ namespace Actual_Game_Files.Scripts
             _sound.audioSource.Play();
         }
 
-        private static void SetVolumeAndPitch(Sound sound, AudioSource audioSource)
+        private void SetVolumeAndPitch(Sound sound, AudioSource audioSource)
         {
-            audioSource.volume = sound.volume;
-            audioSource.pitch = sound.pitch;
+            audioSource.volume = sound.volume * audioSettingsProfile.globalVolume;
+
+            if (sound.soundName == "InGameMusic")
+                audioSource.volume *= audioSettingsProfile.musicVolume;
+            
+            audioSource.pitch = sound.pitch * audioSettingsProfile.pitch;
+        }
+
+        private void PlayMusic()
+        {
+            Play("InGameMusic", musicSource);
         }
     }
 }

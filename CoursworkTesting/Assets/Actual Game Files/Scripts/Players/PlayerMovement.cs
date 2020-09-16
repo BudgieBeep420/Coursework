@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity;
     private bool _isPlayerGrounded;
     private float _speed;
-    private bool _isPaused;
+    public bool isPaused;
     private Vector3 _lastPosition;
     private float _vel;
 
@@ -60,26 +60,28 @@ public class PlayerMovement : MonoBehaviour
     }
     private void UpdateEscapeMenu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && _isPaused == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && isPaused == false)
         {
             Cursor.lockState = CursorLockMode.None;
-            _isPaused = true;
+            isPaused = true;
             hud.SetActive(false);
             escMenu.SetActive(true);
             Cursor.visible = true;
             Time.timeScale = 0;
         }
 
-        else if (Input.GetKeyDown(KeyCode.Escape) && _isPaused)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            _isPaused = false;
-            hud.SetActive(true);
-            escMenu.SetActive(false);
-            Cursor.visible = false;
-            Time.timeScale = 1;
-        }
-        
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+            ReturnToGame();
+    }
+
+    public void ReturnToGame()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        isPaused = false;
+        hud.SetActive(true);
+        escMenu.SetActive(false);
+        Cursor.visible = false;
+        Time.timeScale = 1;
     }
     private void IsPlayerRunning()
     {

@@ -42,7 +42,8 @@ namespace Actual_Game_Files.Scripts
         private const float ShotgunStartingOffset = 0.1f;
         private const int NumberOfShotgunPellets = 10;
         private int _currentLoadedMag;
-
+        private Color _greyColor= new Color(0.624f, 0.624f, 0.624f);
+        
         private void Start()
         {
             UpdateMagazineAndAmmoCount(_currentLoadedMag);
@@ -59,13 +60,14 @@ namespace Actual_Game_Files.Scripts
             
             if(currentMagAmmo == 0 && Input.GetKeyDown(KeyCode.Mouse0)) AudioManager.Play("OutOfAmmoClick", ThisAudioSource);
             
-            if (Input.GetKeyDown(KeyCode.Mouse0) && CanShoot && currentMagAmmo != 0)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && CanShoot && currentMagAmmo != 0 && Math.Abs(Time.timeScale) > 0.15)
             {
                 WeaponAnimator.SetBool(HasShot, true);
                 AudioManager.Play(WeaponShotSoundName, ThisAudioSource);
-                MagazineArray[_currentLoadedMag].numOfBulletsInMag -= 1;
-                AmmoText.text = "Ammo: " + MagazineArray[_currentLoadedMag].numOfBulletsInMag + "/ " +
-                                WeaponMagCapacity;
+                MagazineArray[_currentLoadedMag].numOfBulletsInMag--;
+                currentMagAmmo--;
+                UpdateCounterColour(AmmoText, currentMagAmmo, WeaponMagCapacity);
+                
                 if (!IsWeaponShotgun)
                 {
                     Instantiate(ShotBullet, EndOfBarrel.transform.position,
@@ -166,7 +168,7 @@ namespace Actual_Game_Files.Scripts
         {
             var tempList = new List<int>();
             
-            AmmoText.text = "Ammo: " + MagazineArray[magReloaded].numOfBulletsInMag + "/ " + WeaponMagCapacity;
+            UpdateCounterColour(AmmoText, MagazineArray[magReloaded].numOfBulletsInMag, WeaponMagCapacity);
             
             foreach (var magazine in MagazineArray)
             {
@@ -176,7 +178,7 @@ namespace Actual_Game_Files.Scripts
             
             MagazineText.text = "Magazines: " + string.Join(" - ", tempList);
         }
-
+        
         protected void DisableWeapon()
         {
             gameObject.SetActive(false);
@@ -185,6 +187,13 @@ namespace Actual_Game_Files.Scripts
         private void PlayTakingOutSound()
         {
             if(ThisAudioSource != null) AudioManager.Play("WeaponUnholstering", ThisAudioSource);
+        }
+
+        private static void UpdateCounterColour(Text text, int numOfBullets, int capacity)
+        {
+            text.text = "Ammo: " + numOfBullets + "/ " + capacity;
+            text.color = numOfBullets < capacity / 2 ? Color.yellow : new Color(0.624f, 0.624f, 0.624f);
+            if (numOfBullets == 0) text.color = Color.red;
         }
     }
 

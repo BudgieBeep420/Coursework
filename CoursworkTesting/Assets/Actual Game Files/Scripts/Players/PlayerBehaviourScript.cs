@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Actual_Game_Files.Scripts;
 using Unity.Collections.LowLevel.Unsafe;
@@ -20,15 +21,23 @@ public class PlayerBehaviourScript : MonoBehaviour
     [Header("Weapons")]
     [SerializeField] private GameObject[] weaponArray;
     [Space]
+    
+    [Header("WeaponGameObjects")]
     [SerializeField] private GameObject knife;
     [SerializeField] private GameObject pistol;
     [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject shotgun;
     [Space]
+    
+    [Header("WeaponAnimators")]
     [SerializeField] private Animator knifeAnimator;
     [SerializeField] private Animator pistolAnimator;
     [SerializeField] private Animator rifleAnimator;
     [SerializeField] private Animator shotgunAnimator;
+    [Space] 
+    
+    [Header("WeaponActivationImages")]
+    [SerializeField] private Image[] weaponImages;
     [Space]
     
     [Header("Game Settings")]
@@ -42,6 +51,8 @@ public class PlayerBehaviourScript : MonoBehaviour
     private const KeyCode PistolKey = KeyCode.Alpha2;
     private const KeyCode RifleKey = KeyCode.Alpha3;
     private const KeyCode ShotgunKey = KeyCode.Alpha4;
+
+    private GenericWeaponBehaviour _gwb;
     
     public enum Weapons
     {
@@ -70,25 +81,32 @@ public class PlayerBehaviourScript : MonoBehaviour
             currentActiveWeapon = Weapons.Knife;
             if(pistol.activeSelf) pistolAnimator.SetTrigger(IsPuttingAway);
             if(shotgun.activeSelf) shotgunAnimator.SetTrigger(IsPuttingAway);
+            foreach (var image in weaponImages) image.color = Color.red;
+            weaponImages[(int) Weapons.Knife].color = Color.green;
             knife.SetActive(true);
         }
-        if (Input.GetKeyDown(PistolKey))
+        else if (Input.GetKeyDown(PistolKey))
         {
             currentActiveWeapon = Weapons.Pistol;
             if(knife.activeSelf) knifeAnimator.SetTrigger(IsPuttingAway);
             if(shotgun.activeSelf) shotgunAnimator.SetTrigger(IsPuttingAway);
+            foreach (var image in weaponImages) image.color = Color.red;
+            weaponImages[(int) Weapons.Pistol].color = Color.green;
             pistol.SetActive(true);
         }
-        if (Input.GetKeyDown(RifleKey))
+        else if (Input.GetKeyDown(RifleKey))
         {
+            foreach (var image in weaponImages) image.color = Color.red;
+            weaponImages[(int) Weapons.Rifle].color = Color.green;
             currentActiveWeapon = Weapons.Rifle;
         }
-
-        if (Input.GetKeyDown(ShotgunKey))
+        else if (Input.GetKeyDown(ShotgunKey))
         {
             currentActiveWeapon = Weapons.Shotgun;
             if(pistol.activeSelf) pistolAnimator.SetTrigger(IsPuttingAway);
             if(knife.activeSelf) knifeAnimator.SetTrigger(IsPuttingAway);
+            foreach (var image in weaponImages) image.color = Color.red;
+            weaponImages[(int) Weapons.Shotgun].color = Color.green;
             shotgun.SetActive(true);
         }
     }
@@ -107,6 +125,9 @@ public class PlayerBehaviourScript : MonoBehaviour
             audioManager.Play("DamageTakenSound", playerAudioSource);
         
         healthText.text = "Health: " + health + "/ " + maxHealth;
+        healthText.color = health < maxHealth / 2 ? Color.yellow : Color.green;
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (health == 0) healthText.color = Color.red;
     }
 
     private void Die()
@@ -118,9 +139,7 @@ public class PlayerBehaviourScript : MonoBehaviour
         playerCamera.transform.parent = cameraDeathHolder.transform;
 
         foreach (var weapon in weaponArray)
-        {
             weapon.SetActive(false);
-        }
         
         cameraAnimator.SetTrigger(PlayerHasDied);
         Destroy(gameObject);

@@ -132,7 +132,7 @@ MonoBehaviour:
   bloodSquirt: {fileID: 1791632765963393765, guid: 4d563467a2a226e42818177b09368f5c,
     type: 3}
   bulletSpeed: 10000
-  bulletDamage: 100
+  bulletDamage: 200
   bulletPushBack: 0.5
 --- !u!1 &7226283179216397553
 GameObject:
