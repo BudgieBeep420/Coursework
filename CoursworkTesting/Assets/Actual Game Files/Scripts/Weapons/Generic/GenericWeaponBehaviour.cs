@@ -59,31 +59,40 @@ namespace Actual_Game_Files.Scripts
             var currentMagAmmo = MagazineArray[_currentLoadedMag].numOfBulletsInMag;
             
             if(currentMagAmmo == 0 && Input.GetKeyDown(KeyCode.Mouse0)) AudioManager.Play("OutOfAmmoClick", ThisAudioSource);
-            
-            if (Input.GetKeyDown(KeyCode.Mouse0) && CanShoot && currentMagAmmo != 0 && Math.Abs(Time.timeScale) > 0.15)
+
+            if (IsWeaponFullyAutomatic)
             {
-                WeaponAnimator.SetBool(HasShot, true);
-                AudioManager.Play(WeaponShotSoundName, ThisAudioSource);
-                MagazineArray[_currentLoadedMag].numOfBulletsInMag--;
-                currentMagAmmo--;
-                UpdateCounterColour(AmmoText, currentMagAmmo, WeaponMagCapacity);
-                
-                if (!IsWeaponShotgun)
-                {
-                    Instantiate(ShotBullet, EndOfBarrel.transform.position,
-                        GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
-                }
-                else
-                {
-                    for(var i = 0; i <= NumberOfShotgunPellets; i++)
-                        Instantiate(ShotBullet, 
-                            GenerateRandomBulletStartingPosition(EndOfBarrel.transform.position, ShotgunStartingOffset),
-                            GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
-                }
-                
-                StartCoroutine(ShootingCooldown(TimeBetweenShots));
-                SpawnBulletCasing();
+                if (Input.GetKey(KeyCode.Mouse0) && CanShoot && currentMagAmmo != 0 && Math.Abs(Time.timeScale) > 0.15) ShootWeapon(currentMagAmmo);
             }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0) && CanShoot && currentMagAmmo != 0 && Math.Abs(Time.timeScale) > 0.15) ShootWeapon(currentMagAmmo);
+            }
+        }
+
+        private void ShootWeapon(int currentMagAmmo)
+        {
+            WeaponAnimator.SetBool(HasShot, true);
+            AudioManager.Play(WeaponShotSoundName, ThisAudioSource);
+            MagazineArray[_currentLoadedMag].numOfBulletsInMag--;
+            currentMagAmmo--;
+            UpdateCounterColour(AmmoText, currentMagAmmo, WeaponMagCapacity);
+                
+            if (!IsWeaponShotgun)
+            {
+                Instantiate(ShotBullet, EndOfBarrel.transform.position,
+                    GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
+            }
+            else
+            {
+                for(var i = 0; i <= NumberOfShotgunPellets; i++)
+                    Instantiate(ShotBullet, 
+                        GenerateRandomBulletStartingPosition(EndOfBarrel.transform.position, ShotgunStartingOffset),
+                        GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
+            }
+                
+            StartCoroutine(ShootingCooldown(TimeBetweenShots));
+            SpawnBulletCasing();
         }
         
         private static Quaternion GenerateRandomBulletRotation(Quaternion initialRotation, float inaccuracy)
@@ -92,7 +101,7 @@ namespace Actual_Game_Files.Scripts
             var randomY = Random.Range(-inaccuracy, inaccuracy) - 0.75;
             var randomZ = Random.Range(-inaccuracy, inaccuracy);
 
-            return Quaternion.Euler((float)randomX, (float)randomY, (float)randomZ) * initialRotation;
+            return Quaternion.Euler((float)randomX, (float)randomY, randomZ) * initialRotation;
         }
         
         private static Quaternion GenerateRandomCasingRotation(Quaternion initialRotation, float inaccuracy)
@@ -116,8 +125,10 @@ namespace Actual_Game_Files.Scripts
         private IEnumerator ShootingCooldown(float time)
         {
             CanShoot = false;
+            CanReload = false;
             yield return new WaitForSeconds(time);
             CanShoot = true;
+            CanReload = true;
         }
 
         private IEnumerator ReloadCooldown(float time)
@@ -129,6 +140,8 @@ namespace Actual_Game_Files.Scripts
             CanShoot = true;
         }
 
+        
+        // This is weird and doesnt work for some reason
         private void SpawnBulletCasing()
         {
             var casing = Instantiate(BulletCasing);
@@ -139,7 +152,7 @@ namespace Actual_Game_Files.Scripts
 
         private void Reload(float weaponReloadTime)
         {
-            if (WeaponAnimator.GetBool(IsReloading) || !CanReload) return;
+            if (WeaponAnimator.GetBool(IsReloading) || !CanReload || !CanShoot) return;
             
             WeaponAnimator.SetBool(IsReloading, true);
             AudioManager.Play(WeaponReloadSoundName, ThisAudioSource);
@@ -195,7 +208,16 @@ namespace Actual_Game_Files.Scripts
             text.color = numOfBullets < capacity / 2 ? Color.yellow : new Color(0.624f, 0.624f, 0.624f);
             if (numOfBullets == 0) text.color = Color.red;
         }
-    }
 
+        public void WeaponCantShoot()
+        {
+            CanShoot = false;
+        }
+
+        public void WeaponCanShoot()
+        {
+            CanShoot = true;
+        }
+    }
 }
 

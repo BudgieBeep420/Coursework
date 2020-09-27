@@ -67,4 +67,14 @@ public class KnifeBehaviour : MonoBehaviour
         yield return new WaitForSeconds(time);
         _canStab = true;
     }
+
+    public void CanStab()
+    {
+        _canStab = true;
+    }
+
+    public void CantStab()
+    {
+        _canStab = false;
+    }
 }

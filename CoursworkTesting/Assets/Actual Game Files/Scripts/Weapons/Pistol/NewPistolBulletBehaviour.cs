@@ -27,6 +27,7 @@ public class NewPistolBulletBehaviour : GenericBulletBehaviour
     protected override PlayerBehaviourScript PlayerBehaviourScript { get; set; }
     protected override float BulletDamage { get; set; }
     protected override float BulletPushBack { get; set; }
+    protected override GameManagerScript GameManager { get; set; }
     protected override float BulletSpeed { get; set; }
 
     private void Awake()
@@ -38,6 +39,7 @@ public class NewPistolBulletBehaviour : GenericBulletBehaviour
         BulletDamage = bulletDamage;
         BulletPushBack = bulletPushBack;
         BloodSquirt = bloodSquirt;
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         
         if(GameObject.FindWithTag(PlayerTag) != null)
             PlayerBehaviourScript = GameObject.FindWithTag(PlayerTag).GetComponent<PlayerBehaviourScript>();

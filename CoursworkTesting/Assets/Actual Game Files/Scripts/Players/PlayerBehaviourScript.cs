@@ -62,11 +62,12 @@ public class PlayerBehaviourScript : MonoBehaviour
         Shotgun
     }
 
-    public Weapons? currentActiveWeapon = null;
+    public Weapons currentActiveWeapon = Weapons.Pistol;
 
     private void Start()
     {
         healthText.text = "Health: " + health + "/ " + maxHealth;
+        weaponImages[(int) currentActiveWeapon].color = Color.green;
     }
 
     private void Update()
@@ -81,6 +82,7 @@ public class PlayerBehaviourScript : MonoBehaviour
             currentActiveWeapon = Weapons.Knife;
             if(pistol.activeSelf) pistolAnimator.SetTrigger(IsPuttingAway);
             if(shotgun.activeSelf) shotgunAnimator.SetTrigger(IsPuttingAway);
+            if(rifle.activeSelf) rifleAnimator.SetTrigger(IsPuttingAway);
             foreach (var image in weaponImages) image.color = Color.red;
             weaponImages[(int) Weapons.Knife].color = Color.green;
             knife.SetActive(true);
@@ -90,21 +92,27 @@ public class PlayerBehaviourScript : MonoBehaviour
             currentActiveWeapon = Weapons.Pistol;
             if(knife.activeSelf) knifeAnimator.SetTrigger(IsPuttingAway);
             if(shotgun.activeSelf) shotgunAnimator.SetTrigger(IsPuttingAway);
+            if(rifle.activeSelf) rifleAnimator.SetTrigger(IsPuttingAway);
             foreach (var image in weaponImages) image.color = Color.red;
             weaponImages[(int) Weapons.Pistol].color = Color.green;
             pistol.SetActive(true);
         }
         else if (Input.GetKeyDown(RifleKey))
         {
+            currentActiveWeapon = Weapons.Rifle;
+            if(pistol.activeSelf) pistolAnimator.SetTrigger(IsPuttingAway);
+            if(knife.activeSelf) knifeAnimator.SetTrigger(IsPuttingAway);
+            if(shotgun.activeSelf) shotgunAnimator.SetTrigger(IsPuttingAway);
             foreach (var image in weaponImages) image.color = Color.red;
             weaponImages[(int) Weapons.Rifle].color = Color.green;
-            currentActiveWeapon = Weapons.Rifle;
+            rifle.SetActive(true);
         }
         else if (Input.GetKeyDown(ShotgunKey))
         {
             currentActiveWeapon = Weapons.Shotgun;
             if(pistol.activeSelf) pistolAnimator.SetTrigger(IsPuttingAway);
             if(knife.activeSelf) knifeAnimator.SetTrigger(IsPuttingAway);
+            if(rifle.activeSelf) rifleAnimator.SetTrigger(IsPuttingAway);
             foreach (var image in weaponImages) image.color = Color.red;
             weaponImages[(int) Weapons.Shotgun].color = Color.green;
             shotgun.SetActive(true);

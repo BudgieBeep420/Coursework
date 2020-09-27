@@ -31,6 +31,7 @@ public class EnemyScript : MonoBehaviour
     private PistolScript _pistolScript;
     private AudioManager _audioManager;
     
+    
     private void Start()
     {
         _pistolScript = enemyWeapon.GetComponent<PistolScript>();
@@ -78,10 +79,7 @@ public class EnemyScript : MonoBehaviour
         
         if (Physics.Raycast(ray, out var hit, distance))
         {
-            if (hit.collider.gameObject.layer == 10 || hit.collider.gameObject.layer == 11)
-            {
-                isBlocked = true;
-            }
+            if (hit.collider.gameObject.layer == 10 || hit.collider.gameObject.layer == 11) isBlocked = true;
         }
         return !isBlocked;
     }

@@ -17,9 +17,11 @@ public class GamePanel : MonoBehaviour
     [Header("Scrollers")] 
     [SerializeField] private Scrollbar difficultyScroller;
     [SerializeField] private Scrollbar bloodScroller;
-    [Space]
+    [Space] 
     
-    [SerializeField] private GameManagerScript gameManagerScript;
+    [Header("GameObjects")] 
+    [SerializeField] private GameManagerScript gameManager;
+    [Space]
 
     public GameSettingsProfile gameSettingsProfile;
     private string _gameSettingsDirectory;
@@ -52,11 +54,18 @@ public class GamePanel : MonoBehaviour
     
     public void WriteGameSettings()
     {
-        File.WriteAllText(_gameSettingsDirectory, 
-            JsonUtility.ToJson(new GameSettingsProfile
+        var newProfile = new GameSettingsProfile
         {
             blood = bloodScroller.value,
             difficulty = difficultyScroller.value
-        }));
+        };
+        
+        File.WriteAllText(_gameSettingsDirectory, JsonUtility.ToJson(newProfile));
+        UpdateGameManager(newProfile);
+    }
+
+    private void UpdateGameManager(GameSettingsProfile newProfile)
+    {
+        gameManager.gameSettingsProfile = newProfile;
     }
 }

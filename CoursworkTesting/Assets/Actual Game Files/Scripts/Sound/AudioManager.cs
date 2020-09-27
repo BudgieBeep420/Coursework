@@ -46,12 +46,6 @@ namespace Actual_Game_Files.Scripts
 
         public void Play(string nameOfSound, AudioSource desiredAudioSource)
         {
-            if (desiredAudioSource == null)
-            {
-                Debug.Log("Can't Find desire audio source!");
-                return;
-            }
-            
             // ReSharper disable once InconsistentNaming
             var _sound = Array.Find(sounds,sound => sound.soundName == nameOfSound);
             _sound.audioSource = desiredAudioSource;
