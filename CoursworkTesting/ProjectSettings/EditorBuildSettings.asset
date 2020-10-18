@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Actual Game Files/Scenes/MainMenuScene.unity
     guid: 5be437e5effee414aabc311cbccecbc9
+  - enabled: 1
+    path: Assets/Actual Game Files/Scenes/FirstRoomScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Actual Game Files/Scenes/LevelSelectionScene.unity
+    guid: eb834f5dc78626447961b81ead17f1dd
   m_configObjects: {}

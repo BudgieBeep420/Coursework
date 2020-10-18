@@ -24,13 +24,14 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
     private int _enemyLayer;
     private Vector3 _pushBack;
     private bool _isBloodEnabled;
+    private const float PushBackFactor = 10;
     
 
     public float lifetimeOfBullet;
 
     private void Start()
     {
-        _pushBack = transform.forward.normalized * BulletPushBack;
+        _pushBack = transform.up.normalized * BulletPushBack * PushBackFactor;
         _isBloodEnabled = Convert.ToBoolean(GameManager.gameSettingsProfile.blood);
     }
     private void Update()
@@ -42,9 +43,7 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
     {
         if (lifetimeOfBullet < 0.005f) return;
         if (lifetimeOfBullet > 3) Destroy(gameObject);
-        
-        Debug.Log(_isBloodEnabled);
-        
+
         if (col.CompareTag("Enemies"))
         {
             col.GetComponent<EnemyScript>().TakeDamage(GenerateRandomBulletDmg(BulletDamage));
@@ -56,8 +55,10 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             PlayerBehaviourScript.TakeDamage(GenerateRandomBulletDmg(BulletDamage));
-            col.GetComponent<CharacterController>().Move(_pushBack);
+            /*col.GetComponent<CharacterController>().Move(_pushBack);*/
         }
+
+        if(col.attachedRigidbody) col.attachedRigidbody.AddForce(_pushBack);
 
         if (col.gameObject.layer == EnvironmentLayer)
         {

@@ -53,8 +53,6 @@ public class ShotgunBehaviourScript : GenericWeaponBehaviour
     protected override bool IsWeaponShotgun { get; set; }
     protected override float WeaponReloadTime { get; set; }
     protected override AudioSource ThisAudioSource { get; set; }
-    protected override bool CanShoot { get; set; }
-    protected override bool CanReload { get; set; }
 
     private void Awake()
     {

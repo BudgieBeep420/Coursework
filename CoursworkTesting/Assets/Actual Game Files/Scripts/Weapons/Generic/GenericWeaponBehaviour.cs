@@ -33,16 +33,17 @@ namespace Actual_Game_Files.Scripts
         protected abstract float WeaponReloadTime { get; set; }
         protected abstract AudioSource ThisAudioSource { get; set; }
 
-        protected abstract bool CanShoot { get; set; }
+        protected bool CanShoot { get; set; }
+        private bool IsPuttingAway { get; set; }
         private static readonly int HasShot = Animator.StringToHash("HasShot");
         private static readonly int IsReloading = Animator.StringToHash("IsReloading");
-        protected abstract bool CanReload { get; set; }
+        protected bool CanReload { get; set; }
 
         private const float CasingRotation = 20;
         private const float ShotgunStartingOffset = 0.1f;
         private const int NumberOfShotgunPellets = 10;
         private int _currentLoadedMag;
-        private Color _greyColor= new Color(0.624f, 0.624f, 0.624f);
+        private Color _greyColor = new Color(0.624f, 0.624f, 0.624f);
         
         private void Start()
         {
@@ -51,6 +52,7 @@ namespace Actual_Game_Files.Scripts
 
         private void OnEnable()
         {
+            IsPuttingAway = false;
             UpdateMagazineAndAmmoCount(_currentLoadedMag);
         }
 
@@ -59,6 +61,11 @@ namespace Actual_Game_Files.Scripts
             var currentMagAmmo = MagazineArray[_currentLoadedMag].numOfBulletsInMag;
             
             if(currentMagAmmo == 0 && Input.GetKeyDown(KeyCode.Mouse0)) AudioManager.Play("OutOfAmmoClick", ThisAudioSource);
+            if (IsPuttingAway)
+            {
+                CanShoot = false;
+                Debug.Log("Is putting awway");
+            }
 
             if (IsWeaponFullyAutomatic)
             {
@@ -72,6 +79,7 @@ namespace Actual_Game_Files.Scripts
 
         private void ShootWeapon(int currentMagAmmo)
         {
+            Debug.Log("Shot");
             WeaponAnimator.SetBool(HasShot, true);
             AudioManager.Play(WeaponShotSoundName, ThisAudioSource);
             MagazineArray[_currentLoadedMag].numOfBulletsInMag--;
@@ -125,7 +133,7 @@ namespace Actual_Game_Files.Scripts
         private IEnumerator ShootingCooldown(float time)
         {
             CanShoot = false;
-            CanReload = false;
+            /*CanReload = false;*/
             yield return new WaitForSeconds(time);
             CanShoot = true;
             CanReload = true;
@@ -217,6 +225,11 @@ namespace Actual_Game_Files.Scripts
         public void WeaponCanShoot()
         {
             CanShoot = true;
+        }
+
+        public void PuttingAway()
+        {
+            IsPuttingAway = true;
         }
     }
 }

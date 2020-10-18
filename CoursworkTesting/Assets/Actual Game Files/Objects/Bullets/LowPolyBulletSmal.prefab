@@ -225,4 +225,4 @@ MonoBehaviour:
     type: 3}
   bulletSpeed: 10000
   bulletDamage: 1000
-  bulletPushBack: 5
+  bulletPushBack: 5000

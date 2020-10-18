@@ -54,7 +54,9 @@ namespace Actual_Game_Files.Scripts
                 _sound.audioSource.clip = _sound.audioClip;
             
             SetVolumeAndPitch(_sound, desiredAudioSource);
-            _sound.audioSource.Play();
+            
+            if(_sound.needsPlayOneHit) _sound.audioSource.PlayOneShot(_sound.audioClip);
+            else _sound.audioSource.Play();
         }
 
         private void SetVolumeAndPitch(Sound sound, AudioSource audioSource)
