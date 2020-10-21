@@ -41,7 +41,7 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (lifetimeOfBullet < 0.005f) return;
+        if (lifetimeOfBullet < 0.004f) return;
         if (lifetimeOfBullet > 3) Destroy(gameObject);
 
         if (col.CompareTag("Enemies"))

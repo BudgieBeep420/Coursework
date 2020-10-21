@@ -1,0 +1,29 @@
+Hello, and welcome to the training ground.
+
+If you are not already aware, you are here to rid the office of the unwanted visitors that 
+have found their way in.
+
+This should be an easy task for you, but if you want to, you can use this room to familiarize
+yourself with your equipment.
+
+Walk forward towards the leftmost table to proceed.
+
+/////////
+////////
+
+In the top left you will see a panel with useful information about your status.
+
+This includes things like health, which will be important later.
+
+You can also see the amount of ammunition left in your weapons.
+
+In the bottom left you will see another panel.
+
+This panel tells you the weapons you have at your disposal, as well as the one which you are currently using.
+
+
+/////////
+////////
+
+On this table you can see an assortment of weapons. These are the weapons you will be using out in the office. 
+You can use the dummy enemies out on the range for practise

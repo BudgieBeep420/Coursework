@@ -30,10 +30,12 @@ public class EnemyScript : MonoBehaviour
     private bool _hasSeenPlayer;
     private PistolScript _pistolScript;
     private AudioManager _audioManager;
-    
-    
+    private GameManagerScript _gameManagerScript;
+
+
     private void Start()
     {
+        _gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         _pistolScript = enemyWeapon.GetComponent<PistolScript>();
         _audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         _timeToStartEngaging = Random.Range(0f, 2f);
@@ -62,6 +64,8 @@ public class EnemyScript : MonoBehaviour
     {
         deathAudioObject.transform.parent = null;
         _audioManager.Play("DeathSound", deathAudioObject.GetComponent<AudioSource>());
+        _gameManagerScript.NumberOfKills++;
+        Debug.Log("Number of kills: " + _gameManagerScript.NumberOfKills);
         Destroy(gameObject);
     }
 

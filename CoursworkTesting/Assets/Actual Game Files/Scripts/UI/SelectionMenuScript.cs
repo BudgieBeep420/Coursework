@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SelectionMenuScript : MonoBehaviour
 {
-
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
@@ -13,6 +12,6 @@ public class SelectionMenuScript : MonoBehaviour
 
     public void Tutorial()
     {
-        SceneManager.LoadScene("FirstRoomScene");
+        SceneManager.LoadScene("TutorialScene");
     }
 }

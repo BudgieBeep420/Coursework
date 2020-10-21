@@ -25,6 +25,7 @@ public class EscapeMenu : BaseMenu
 
     public void LoadMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenuScene");
     }
 

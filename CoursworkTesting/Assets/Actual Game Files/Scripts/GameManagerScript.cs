@@ -9,9 +9,13 @@ public class GameManagerScript : MonoBehaviour
     public GameSettingsProfile gameSettingsProfile;
     private string _gameSettingsDirectory;
 
+    public int NumberOfKills { get; set; }
+
     private void Awake()
     {
         _gameSettingsDirectory = Application.dataPath + @"\Settings\GameSettings.json";
         gameSettingsProfile = JsonUtility.FromJson<GameSettingsProfile>(File.ReadAllText(_gameSettingsDirectory));
     }
+    
+    
 }

@@ -64,7 +64,6 @@ namespace Actual_Game_Files.Scripts
             if (IsPuttingAway)
             {
                 CanShoot = false;
-                Debug.Log("Is putting awway");
             }
 
             if (IsWeaponFullyAutomatic)
@@ -79,7 +78,6 @@ namespace Actual_Game_Files.Scripts
 
         private void ShootWeapon(int currentMagAmmo)
         {
-            Debug.Log("Shot");
             WeaponAnimator.SetBool(HasShot, true);
             AudioManager.Play(WeaponShotSoundName, ThisAudioSource);
             MagazineArray[_currentLoadedMag].numOfBulletsInMag--;
