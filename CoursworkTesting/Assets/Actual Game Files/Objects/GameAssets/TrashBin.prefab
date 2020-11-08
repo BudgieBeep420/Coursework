@@ -361,6 +361,12 @@ MonoBehaviour:
     needsPlayOneHit: 0
     volume: 0.894
     pitch: 1
+  - soundName: HiddenDoorSound
+    audioClip: {fileID: 8300000, guid: 552fec8bd1c33db42b16b53b2757521f, type: 3}
+    audioSource: {fileID: 0}
+    needsPlayOneHit: 0
+    volume: 0.894
+    pitch: 1
   musicSource: {fileID: 0}
   globalVolSlider: {fileID: 0}
   pitchSlider: {fileID: 0}
@@ -547,6 +553,8 @@ MonoBehaviour:
   gameSettingsProfile:
     blood: 0
     difficulty: 0
+  killsToProceed: 
+  doorsToProceed: []
 --- !u!1001 &8536762885393566695
 PrefabInstance:
   m_ObjectHideFlags: 0

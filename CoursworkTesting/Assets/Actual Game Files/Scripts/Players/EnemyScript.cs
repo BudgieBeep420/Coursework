@@ -65,6 +65,7 @@ public class EnemyScript : MonoBehaviour
         deathAudioObject.transform.parent = null;
         _audioManager.Play("DeathSound", deathAudioObject.GetComponent<AudioSource>());
         _gameManagerScript.NumberOfKills++;
+        
         Debug.Log("Number of kills: " + _gameManagerScript.NumberOfKills);
         Destroy(gameObject);
     }

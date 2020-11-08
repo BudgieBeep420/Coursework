@@ -41,7 +41,7 @@ namespace Actual_Game_Files.Scripts
 
         private const float CasingRotation = 20;
         private const float ShotgunStartingOffset = 0.1f;
-        private const int NumberOfShotgunPellets = 10;
+        private const int NumberOfShotgunPellets = 20;
         private int _currentLoadedMag;
         private Color _greyColor = new Color(0.624f, 0.624f, 0.624f);
         
