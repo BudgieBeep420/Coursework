@@ -14,4 +14,9 @@ public class SelectionMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene("TutorialScene");
     }
+
+    public void Mission1()
+    {
+        SceneManager.LoadScene("LevelOne");
+    }
 }

@@ -11,7 +11,7 @@ public class FadingScript : MonoBehaviour
 
     private const float Time = 3;
 
-    private void Awake()
+    private void OnEnable()
     {
         FadeFromBlack();
     }

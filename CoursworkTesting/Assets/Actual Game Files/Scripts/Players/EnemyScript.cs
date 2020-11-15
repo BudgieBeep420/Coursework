@@ -25,6 +25,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private GameObject enemyWeapon;
     [SerializeField] private AudioSource thisAudioSource;
     [SerializeField] private GameObject deathAudioObject;
+    [SerializeField] private Transform endOfPistolTransform;
 
     private float _timeToStartEngaging;
     private bool _hasSeenPlayer;
@@ -108,8 +109,9 @@ public class EnemyScript : MonoBehaviour
         
         agent.SetDestination(playerTransform.position);
 
-        if(distance <= agent.stoppingDistance)
-            MakeEnemyFaceTarget();
+        if (!(distance <= agent.stoppingDistance)) return;
+        MakeEnemyFaceTarget();
+        MakeGunBarrelPointAtTarget();
     }
     
     private IEnumerator CountdownTillAttack()
@@ -123,6 +125,12 @@ public class EnemyScript : MonoBehaviour
         var direction = (playerTransform.position - transform.position).normalized;
         var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * enemyRotationSpeed);
+    }
+
+    private void MakeGunBarrelPointAtTarget()
+    {
+        endOfPistolTransform.LookAt(playerTransform);
+        endOfPistolTransform.Rotate(Vector3.right, 90f);
     }
 
     private void ShootAtPlayer()
