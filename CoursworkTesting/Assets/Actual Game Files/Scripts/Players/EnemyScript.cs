@@ -43,11 +43,13 @@ public class EnemyScript : MonoBehaviour
 
     private void Update()
     {
-        if(playerTransform != null && CanSeePlayer(
-            Vector3.Distance(playerTransform.position, transform.position)))
+        if (playerTransform != null && CanSeePlayer(Vector3.Distance(playerTransform.position, transform.position)))
         {
+            _pistolScript.canSeePlayer = true;
             CheckEnemyFieldOfView();
         }
+        else _pistolScript.canSeePlayer = false;
+        
     }
 
     public void TakeDamage(float damage)
@@ -86,6 +88,7 @@ public class EnemyScript : MonoBehaviour
         {
             if (hit.collider.gameObject.layer == 10 || hit.collider.gameObject.layer == 11) isBlocked = true;
         }
+        
         return !isBlocked;
     }
 

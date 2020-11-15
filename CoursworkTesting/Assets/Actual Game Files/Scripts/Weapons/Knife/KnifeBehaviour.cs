@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Actual_Game_Files.Scripts;
 using Unity.Profiling;
@@ -18,9 +19,14 @@ public class KnifeBehaviour : MonoBehaviour
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private AudioSource thisAudioSource;
+    [SerializeField] private GameManagerScript GameManager;
+    [SerializeField] private Transform endOfKnife;
+    [SerializeField] private GameObject BloodSquirt;
 
     private static readonly int IsStabbing = Animator.StringToHash("IsStabbing");
     private bool _canStab = true;
+    private bool _isBloodEnabled;
+    
     
     private void Update()
     {
@@ -42,6 +48,10 @@ public class KnifeBehaviour : MonoBehaviour
             if (hit.transform.CompareTag("Enemies"))
             {
                 hit.transform.GetComponent<EnemyScript>().TakeDamage(knifeDamage);
+                
+                if(Convert.ToBoolean(GameManager.gameSettingsProfile.blood))
+                    Instantiate(BloodSquirt, endOfKnife.position, Quaternion.Euler(new Vector3(-115, 0, 0)));
+                
                 audioManager.Play("KnifeStab", thisAudioSource);
             }
             else if (hit.transform.CompareTag("Environment"))

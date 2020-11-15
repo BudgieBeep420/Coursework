@@ -43,6 +43,12 @@ public class PlayerBehaviourScript : MonoBehaviour
     [Header("Game Settings")]
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
+    [Space]
+    
+    [Header("Weapons Active on this mission")]
+    [SerializeField] private bool isPistolEnabled;
+    [SerializeField] private bool isRifleEnabled;
+    [SerializeField] private bool isShotgunEnabled;
 
     private static readonly int PlayerHasDied = Animator.StringToHash("PlayerHasDied");
     private static readonly int IsPuttingAway = Animator.StringToHash("IsPuttingAway");
@@ -87,7 +93,7 @@ public class PlayerBehaviourScript : MonoBehaviour
             weaponImages[(int) Weapons.Knife].color = Color.green;
             knife.SetActive(true);
         }
-        else if (Input.GetKeyDown(PistolKey))
+        else if (Input.GetKeyDown(PistolKey) && isPistolEnabled)
         {
             currentActiveWeapon = Weapons.Pistol;
             if(knife.activeSelf) knifeAnimator.SetTrigger(IsPuttingAway);
@@ -97,7 +103,7 @@ public class PlayerBehaviourScript : MonoBehaviour
             weaponImages[(int) Weapons.Pistol].color = Color.green;
             pistol.SetActive(true);
         }
-        else if (Input.GetKeyDown(RifleKey))
+        else if (Input.GetKeyDown(RifleKey) && isRifleEnabled)
         {
             currentActiveWeapon = Weapons.Rifle;
             if(pistol.activeSelf) pistolAnimator.SetTrigger(IsPuttingAway);
@@ -107,7 +113,7 @@ public class PlayerBehaviourScript : MonoBehaviour
             weaponImages[(int) Weapons.Rifle].color = Color.green;
             rifle.SetActive(true);
         }
-        else if (Input.GetKeyDown(ShotgunKey))
+        else if (Input.GetKeyDown(ShotgunKey) && isShotgunEnabled)
         {
             currentActiveWeapon = Weapons.Shotgun;
             if(pistol.activeSelf) pistolAnimator.SetTrigger(IsPuttingAway);

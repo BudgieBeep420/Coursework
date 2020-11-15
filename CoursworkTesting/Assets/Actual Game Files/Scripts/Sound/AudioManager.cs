@@ -18,6 +18,7 @@ namespace Actual_Game_Files.Scripts
         
         [Header("GameObjects")]
         [SerializeField] public AudioSource musicSource;
+        [SerializeField] private AudioSource backgroundSoundSource;
         [SerializeField] private Slider globalVolSlider;
         [SerializeField] private Slider pitchSlider;
         [SerializeField] private Slider musicVolSlider;
@@ -33,6 +34,7 @@ namespace Actual_Game_Files.Scripts
             _audioSettingsDirectory = Application.dataPath + @"\Settings\AudioSettings.json";
             audioSettingsProfile = JsonUtility.FromJson<AudioSettingsProfile>(File.ReadAllText(_audioSettingsDirectory));
             PlayMusic();
+            PlayBackGroundMusic();
         }
 
         public void WriteAudioSettings()
@@ -42,6 +44,7 @@ namespace Actual_Game_Files.Scripts
             audioSettingsProfile.musicVolume = musicVolSlider.value;
             File.WriteAllText(_audioSettingsDirectory, JsonUtility.ToJson(audioSettingsProfile));
             PlayMusic();
+            PlayBackGroundMusic();
         }
 
         public void Play(string nameOfSound, AudioSource desiredAudioSource)
@@ -72,6 +75,11 @@ namespace Actual_Game_Files.Scripts
         private void PlayMusic()
         {
             Play("InGameMusic", musicSource);
+        }
+
+        private void PlayBackGroundMusic()
+        {
+            Play("BackGroundNoise", backgroundSoundSource);
         }
     }
 }

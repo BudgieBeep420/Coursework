@@ -33,15 +33,18 @@ public class PistolScript : MonoBehaviour
     private static Transform _playerTransform;
     private AudioSource _thisAudioSource;
 
+    public bool canSeePlayer;
+
     private void Awake()
     {
         _thisAudioSource = gameObject.GetComponent<AudioSource>();
         _playerTransform = GameObject.FindWithTag("Player").transform;
     }
-
+    
     public void Shoot()
     {
-        if (_playerTransform == null) return;
+        StartCoroutine(ShootingCooldown(weaponShootingCooldown));
+        if (_playerTransform == null || !canSeePlayer) return;
         
         if (numberOfBullets == 0)
         {
@@ -49,7 +52,7 @@ public class PistolScript : MonoBehaviour
             return;
         }
         
-        StartCoroutine(ShootingCooldown(weaponShootingCooldown));
+        
         numberOfBullets--;
         weaponAnimator.SetBool(HasShot, true);
         audioManager.Play(pistolShotSoundName, _thisAudioSource);
