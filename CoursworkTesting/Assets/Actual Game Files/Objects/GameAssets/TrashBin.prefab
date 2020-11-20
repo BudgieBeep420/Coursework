@@ -374,6 +374,18 @@ MonoBehaviour:
     needsPlayOneHit: 0
     volume: 0.1
     pitch: 1
+  - soundName: ButtonClickSound
+    audioClip: {fileID: 8300000, guid: 4ac2a17019bcdf1489af459e77d116fc, type: 3}
+    audioSource: {fileID: 0}
+    needsPlayOneHit: 1
+    volume: 0.1
+    pitch: 1
+  - soundName: ButtonHoverSound
+    audioClip: {fileID: 8300000, guid: 4a235f0ed2dbee440ae8346e82a3ac8f, type: 3}
+    audioSource: {fileID: 0}
+    needsPlayOneHit: 1
+    volume: 0.1
+    pitch: 1
   musicSource: {fileID: 0}
   backgroundSoundSource: {fileID: 3805569670441680674}
   globalVolSlider: {fileID: 0}

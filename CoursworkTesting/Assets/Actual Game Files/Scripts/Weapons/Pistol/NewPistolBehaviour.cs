@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO.Pipes;
-using Actual_Game_Files.Scripts;
+﻿using Actual_Game_Files.Scripts;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.ProBuilder.MeshOperations;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NewPistolBehaviour : GenericWeaponBehaviour

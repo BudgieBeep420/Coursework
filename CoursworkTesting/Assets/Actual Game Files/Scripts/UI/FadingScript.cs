@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Actual_Game_Files.Scripts.Serializable;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class FadingScript : MonoBehaviour

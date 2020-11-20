@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 using Actual_Game_Files.Scripts;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class AudioPanel : MonoBehaviour

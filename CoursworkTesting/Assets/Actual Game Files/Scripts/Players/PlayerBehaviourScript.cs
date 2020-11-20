@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Actual_Game_Files.Scripts;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerBehaviourScript : MonoBehaviour
@@ -16,6 +12,7 @@ public class PlayerBehaviourScript : MonoBehaviour
     [SerializeField] private Animator cameraAnimator;
     [SerializeField] private GameObject cameraDeathHolder;
     [SerializeField] private Text healthText;
+    [SerializeField] private GameObject bloodImageOnHud;
     [Space]
     
     [Header("Weapons")]
@@ -127,6 +124,7 @@ public class PlayerBehaviourScript : MonoBehaviour
     
     public void TakeDamage(float damageTaken)
     {
+        bloodImageOnHud.SetActive(true);
         health -= damageTaken;
         healthText.text = "Health: " + health + "/ " + maxHealth;
 

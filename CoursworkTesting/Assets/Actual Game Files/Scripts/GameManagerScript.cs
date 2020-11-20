@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using UnityEditor.Rendering.PostProcessing;
+﻿using System.IO;
+using Actual_Game_Files.Scripts.Serializable;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
     public GameSettingsProfile gameSettingsProfile;
     private string _gameSettingsDirectory;
+
+    public VideoSettingsProfile videoSettingsProfile;
+    private string _videoSettingsDirectory;
 
     [Header("This is cumulative btw")]
     [SerializeField] private int[] killsToProceed;
@@ -33,6 +32,11 @@ public class GameManagerScript : MonoBehaviour
     {
         _gameSettingsDirectory = Application.dataPath + @"\Settings\GameSettings.json";
         gameSettingsProfile = JsonUtility.FromJson<GameSettingsProfile>(File.ReadAllText(_gameSettingsDirectory));
+        
+        // Gets the video profile as well
+        
+        _videoSettingsDirectory = Application.dataPath + @"\Settings\VideoSettings.json";
+        videoSettingsProfile = JsonUtility.FromJson<VideoSettingsProfile>(File.ReadAllText(_videoSettingsDirectory));
     }
 
     private void UpdateDoors()

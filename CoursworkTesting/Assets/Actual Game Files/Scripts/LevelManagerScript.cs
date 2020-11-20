@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Actual_Game_Files.Scripts.Serializable;
 using UnityEngine;
 
@@ -9,6 +6,7 @@ public class LevelManagerScript : MonoBehaviour
 {
     private string _levelDataPath;
     private UnlockedLevelData _unlockedLevelData;
+    
     private void Awake()
     {
         _levelDataPath = Application.dataPath + @"\Settings\UnlockedLevelData.json";

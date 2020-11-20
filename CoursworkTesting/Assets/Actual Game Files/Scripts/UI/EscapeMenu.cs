@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using Actual_Game_Files.Scripts;
 using Actual_Game_Files.Scripts.UI;
-using Lean.Transition.Method;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class EscapeMenu : BaseMenu
 {
@@ -15,12 +12,19 @@ public class EscapeMenu : BaseMenu
     
     [Header("Panels")] 
     [SerializeField] private GameObject[] panels;
+    [Space]
+    
+    [SerializeField] private AudioManager audioManager;
     
     protected override GameObject[] PanelArray { get; set; }
+    protected override AudioManager AudioManager { get; set; }
+    protected override AudioSource ThisAudioSource { get; set; }
 
     private void OnEnable()
     {
         PanelArray = panels;
+        AudioManager = audioManager;
+        ThisAudioSource = gameObject.GetComponent<AudioSource>();
     }
 
     public void LoadMainMenu()
@@ -33,5 +37,4 @@ public class EscapeMenu : BaseMenu
     {
         playerMovement.ReturnToGame();
     }
-    
 }

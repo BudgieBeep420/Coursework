@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Resources;
-using System.Security.Cryptography;
+﻿using System.Collections;
 using Actual_Game_Files.Scripts;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Analytics;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour

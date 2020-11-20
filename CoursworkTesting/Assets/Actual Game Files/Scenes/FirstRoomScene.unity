@@ -75820,6 +75820,11 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1375728739}
+    - target: {fileID: 3347189608818023554, guid: bceb7c76d3587664abf16cfe2795782a,
+        type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1452004213}
     - target: {fileID: 3347189608818023555, guid: bceb7c76d3587664abf16cfe2795782a,
         type: 3}
       propertyPath: m_LocalPosition.x

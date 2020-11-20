@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using Lean.Transition;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public abstract class GenericBulletBehaviour : MonoBehaviour
@@ -41,7 +35,7 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (lifetimeOfBullet < 0.0001f) return;
+        /*if (lifetimeOfBullet < 0.0001f) return;*/
         if (lifetimeOfBullet > 3) Destroy(gameObject);
 
         if (col.CompareTag("Enemies"))

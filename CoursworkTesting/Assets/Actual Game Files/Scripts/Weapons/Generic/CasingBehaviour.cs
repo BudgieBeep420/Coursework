@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Security.Cryptography;
+﻿using System.Collections;
 using Actual_Game_Files.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class CasingBehaviour : MonoBehaviour

@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Actual_Game_Files.Scripts;
+﻿using Actual_Game_Files.Scripts;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {

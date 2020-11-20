@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Actual_Game_Files.Scripts;
+﻿using Actual_Game_Files.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 

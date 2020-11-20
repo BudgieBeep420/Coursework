@@ -5,7 +5,10 @@ namespace Actual_Game_Files.Scripts.UI
     public abstract class BaseMenu : MonoBehaviour
     {
         protected abstract GameObject[] PanelArray { get; set; }
+        protected abstract AudioManager AudioManager { get; set; }
         
+        protected abstract AudioSource ThisAudioSource { get; set; }
+
         private enum Panels
         {
             Main,
@@ -43,6 +46,16 @@ namespace Actual_Game_Files.Scripts.UI
         {
             foreach (var panel in PanelArray) panel.SetActive(false);
             PanelArray[(int) Panels.Game].SetActive(true);
+        }
+
+        public void PlayHoverSound()
+        {
+            AudioManager.Play("ButtonHoverSound", ThisAudioSource);
+        }
+
+        public void PlayClickSound()
+        {
+            AudioManager.Play("ButtonClickSound", ThisAudioSource);
         }
     }
 }

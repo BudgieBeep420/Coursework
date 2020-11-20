@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using Actual_Game_Files.Scripts;
-using Unity.Profiling;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class KnifeBehaviour : MonoBehaviour
 {
