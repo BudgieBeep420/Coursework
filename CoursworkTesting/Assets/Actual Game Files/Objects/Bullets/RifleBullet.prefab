@@ -223,6 +223,6 @@ MonoBehaviour:
   thisBullet: {fileID: 8180078520103650239}
   bloodSquirt: {fileID: 1791632765963393765, guid: 4d563467a2a226e42818177b09368f5c,
     type: 3}
-  bulletSpeed: 15000
-  bulletDamage: 1000
+  bulletSpeed: 25000
+  bulletDamage: 3000
   bulletPushBack: 15000

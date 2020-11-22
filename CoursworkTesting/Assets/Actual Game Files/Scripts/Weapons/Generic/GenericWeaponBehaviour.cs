@@ -37,7 +37,7 @@ namespace Actual_Game_Files.Scripts
 
         private const float CasingRotation = 20;
         private const float ShotgunStartingOffset = 0.1f;
-        private const int NumberOfShotgunPellets = 20;
+        private const int NumberOfShotgunPellets = 10;
         private int _currentLoadedMag;
         private Color _greyColor = new Color(0.624f, 0.624f, 0.624f);
         
@@ -83,14 +83,16 @@ namespace Actual_Game_Files.Scripts
             if (!IsWeaponShotgun)
             {
                 Instantiate(ShotBullet, EndOfBarrel.transform.position,
-                    GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
+                    GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees))
+                    .GetComponent<NewPistolBulletBehaviour>().IsBulletOfPlayer = true;
             }
             else
             {
-                for(var i = 0; i <= NumberOfShotgunPellets; i++)
-                    Instantiate(ShotBullet, 
+                for (var i = 0; i <= NumberOfShotgunPellets; i++)
+                    Instantiate(ShotBullet,
                         GenerateRandomBulletStartingPosition(EndOfBarrel.transform.position, ShotgunStartingOffset),
-                        GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees));
+                        GenerateRandomBulletRotation(EndOfBarrel.transform.rotation, WeaponInaccuracyInDegrees))
+                        .GetComponent<ShotgunBulletBehaviour>().IsBulletOfPlayer = true;
             }
                 
             StartCoroutine(ShootingCooldown(TimeBetweenShots));

@@ -12,6 +12,7 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
     protected abstract float BulletDamage { get; set; }
     protected abstract float BulletPushBack { get; set; }
     protected abstract GameManagerScript GameManager { get; set; }
+    public abstract bool IsBulletOfPlayer { get; set; }
 
     protected abstract float BulletSpeed { get; set; }
     private const int EnvironmentLayer = 10;
@@ -19,6 +20,10 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
     private Vector3 _pushBack;
     private bool _isBloodEnabled;
     private const float PushBackFactor = 10;
+    
+    // This is gonna be changed depending on the difficulty
+    private float _enemyDamageModifier = 0.2f;
+    
     
 
     public float lifetimeOfBullet;
@@ -35,12 +40,12 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        /*if (lifetimeOfBullet < 0.0001f) return;*/
+        /*if (lifetimeOfBullet < 0.000001f) return;*/
         if (lifetimeOfBullet > 3) Destroy(gameObject);
 
         if (col.CompareTag("Enemies"))
         {
-            col.GetComponent<EnemyScript>().TakeDamage(GenerateRandomBulletDmg(BulletDamage));
+            col.GetComponent<EnemyScript>().TakeDamage(GenerateRandomBulletDmg(BulletDamage, false));
             
             if(_isBloodEnabled)
                 Instantiate(BloodSquirt, transform.position, Quaternion.Euler(new Vector3(-115, 0, 0)));
@@ -48,7 +53,8 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
 
         if (col.CompareTag("Player"))
         {
-            PlayerBehaviourScript.TakeDamage(GenerateRandomBulletDmg(BulletDamage));
+            if (IsBulletOfPlayer) return;
+            PlayerBehaviourScript.TakeDamage(GenerateRandomBulletDmg(BulletDamage, true));
             /*col.GetComponent<CharacterController>().Move(_pushBack);*/
         }
 
@@ -62,11 +68,11 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
     
-    private static float GenerateRandomBulletDmg(float baseDamage)
+    private float GenerateRandomBulletDmg(float baseDamage, bool isPlayer)
     {
         var lower = Convert.ToSingle(baseDamage - 0.1 * baseDamage);
         var upper = Convert.ToSingle(baseDamage + 0.1 * baseDamage);
-        return Convert.ToSingle(Math.Round(Random.Range(lower, upper)));
+        return Convert.ToSingle(!isPlayer ? Math.Round(Random.Range(lower, upper)) : Math.Round(_enemyDamageModifier * Random.Range(lower, upper)));
     }
     
     protected void SetBulletSpeed()

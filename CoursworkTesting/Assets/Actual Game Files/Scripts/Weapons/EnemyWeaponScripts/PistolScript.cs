@@ -58,11 +58,14 @@ public class PistolScript : MonoBehaviour
 
         SpawnBulletCasing();
     }
-    
+
+    //This was changed to stop when the player turns a corner after being spotted
     private IEnumerator ShootingCooldown(float time)
     {
+        var x = canSeePlayer;
         yield return new WaitForSeconds(Random.Range(0.3f * time, time));
-        Shoot();
+        if(x == canSeePlayer) Shoot();
+        else StartCoroutine(ShootingCooldown(weaponShootingCooldown));
     }
     
     private static Quaternion GenerateRandomBulletRotation(Quaternion initialRotation, float inaccuracy)

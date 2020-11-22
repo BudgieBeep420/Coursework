@@ -1,5 +1,6 @@
 ﻿using Actual_Game_Files.Scripts;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
 public class NewPistolBehaviour : GenericWeaponBehaviour
@@ -14,6 +15,7 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     [SerializeField] private Text ammoText;
     [SerializeField] private Text magazineText;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject flashLight;
     [Space]
             
     [Header("Game Settings")]
@@ -46,6 +48,8 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     protected override bool IsWeaponShotgun { get; set; }
     protected override float WeaponReloadTime { get; set; }
     protected override AudioSource ThisAudioSource { get; set; }
+
+    private bool _isFlashLightOn;
     
     private void Awake()
     {
@@ -75,5 +79,14 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
     {
         ShootingWeaponCheck();
         CheckReload();
+
+        if (Input.GetKeyDown(KeyCode.F)) UpdateFlashLight();
+    }
+
+    private void UpdateFlashLight()
+    {
+        if (_isFlashLightOn) flashLight.SetActive(false);
+        if (!_isFlashLightOn) flashLight.SetActive(true);
+        _isFlashLightOn = !_isFlashLightOn;
     }
 }

@@ -11,7 +11,7 @@ public class CasingBehaviour : MonoBehaviour
     [Space] 
     
     [Header("Game Objects")] 
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField] public AudioManager audioManager;
     [Space]    
     
     private float _casingLifeLength;
@@ -38,7 +38,7 @@ public class CasingBehaviour : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private IEnumerator CasingSound()
+    protected virtual IEnumerator CasingSound()
     {
         yield return new WaitForSeconds(Random.Range(0.5f, 1f));
 

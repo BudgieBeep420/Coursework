@@ -380,6 +380,18 @@ MonoBehaviour:
     needsPlayOneHit: 1
     volume: 0.1
     pitch: 1
+  - soundName: ShellHittingFloor1
+    audioClip: {fileID: 8300000, guid: 2e6cc54a1623f9646b0b8ab926e0c522, type: 3}
+    audioSource: {fileID: 0}
+    needsPlayOneHit: 1
+    volume: 0.1
+    pitch: 1
+  - soundName: ShellHittingFloor2
+    audioClip: {fileID: 8300000, guid: c1a358135441c7d4fa0c5587bb25e264, type: 3}
+    audioSource: {fileID: 0}
+    needsPlayOneHit: 1
+    volume: 0.1
+    pitch: 1
   - soundName: ButtonHoverSound
     audioClip: {fileID: 8300000, guid: 4a235f0ed2dbee440ae8346e82a3ac8f, type: 3}
     audioSource: {fileID: 0}
@@ -573,6 +585,10 @@ MonoBehaviour:
   gameSettingsProfile:
     blood: 0
     difficulty: 0
+  videoSettingsProfile:
+    qualityIndex: 0
+    resolutionIndex: 0
+    isFullscreen: 0
   killsToProceed: 
   doorsToProceed: []
   disableDoorCheck: 0

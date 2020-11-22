@@ -26,13 +26,16 @@ public class EnemyScript : MonoBehaviour
     private AudioManager _audioManager;
     private GameManagerScript _gameManagerScript;
 
+    private bool _isBlocked;
+    private bool _canDie = true;
+
 
     private void Start()
     {
         _gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         _pistolScript = enemyWeapon.GetComponent<PistolScript>();
         _audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
-        _timeToStartEngaging = Random.Range(0f, 2f);
+        _timeToStartEngaging = Random.Range(0.5f, 3f);
     }
 
     private void Update()
@@ -50,8 +53,11 @@ public class EnemyScript : MonoBehaviour
     {
         health -= damage;
 
-        if (health < 1)
+        if (health < 1 && _canDie)
+        {
+            _canDie = !_canDie;
             Die();
+        }
         else
             _audioManager.Play("DamageTakenSound", thisAudioSource);
     }
@@ -74,16 +80,16 @@ public class EnemyScript : MonoBehaviour
 
     private bool CanSeePlayer(float distance)
     {
-        var isBlocked = false;
+        _isBlocked = false;
         var ray = new Ray(transform.position, 
             (playerTransform.position - transform.position).normalized); ;
         
         if (Physics.Raycast(ray, out var hit, distance))
         {
-            if (hit.collider.gameObject.layer == 10 || hit.collider.gameObject.layer == 11) isBlocked = true;
+            if (hit.collider.gameObject.layer == 10 || hit.collider.gameObject.layer == 11) _isBlocked = true;
         }
         
-        return !isBlocked;
+        return !_isBlocked;
     }
 
     private void CheckEnemyFieldOfView()

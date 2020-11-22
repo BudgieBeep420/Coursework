@@ -4019,6 +4019,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2318511010321777576, guid: bceb7c76d3587664abf16cfe2795782a,
+        type: 3}
+      propertyPath: gameManagerScript
+      value: 
+      objectReference: {fileID: 302119625}
     - target: {fileID: 3347189608818023554, guid: bceb7c76d3587664abf16cfe2795782a,
         type: 3}
       propertyPath: playerMovement
