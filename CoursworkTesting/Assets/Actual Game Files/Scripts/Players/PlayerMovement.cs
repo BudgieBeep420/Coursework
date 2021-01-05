@@ -1,4 +1,5 @@
-﻿using Actual_Game_Files.Scripts;
+﻿using System.IO;
+using Actual_Game_Files.Scripts;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -31,10 +32,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _lastPosition;
     private float _vel;
 
+    [SerializeField] public float userDefinedSens = 1f;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        var gameSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\GameSettings.json";
+        var gameSettingsProfile = JsonUtility.FromJson<GameSettingsProfile>(File.ReadAllText(gameSettingsDirectory));
+        userDefinedSens = gameSettingsProfile.sensitivity;
     }
 
     private void LateUpdate()
@@ -54,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         _vel = Vector3.Distance(_lastPosition, transform.position) / Time.deltaTime;
         _lastPosition = transform.position;
     }
+    
     private void UpdateEscapeMenu()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isPaused == false)
@@ -98,8 +105,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdatePlayerRotation()
     {
-        var mouseX = Input.GetAxis("Mouse X") * aimSensitivity * Time.deltaTime;
-        var mouseY = Input.GetAxis("Mouse Y") * aimSensitivity * Time.deltaTime;
+        var mouseX = Input.GetAxis("Mouse X") * aimSensitivity * Time.deltaTime * userDefinedSens;
+        var mouseY = Input.GetAxis("Mouse Y") * aimSensitivity * Time.deltaTime * userDefinedSens;
 
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -80f, 80f);

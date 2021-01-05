@@ -30,12 +30,12 @@ public class GameManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        _gameSettingsDirectory = Application.dataPath + @"\Settings\GameSettings.json";
+        _gameSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\GameSettings.json";
         gameSettingsProfile = JsonUtility.FromJson<GameSettingsProfile>(File.ReadAllText(_gameSettingsDirectory));
         
         // Gets the video profile as well
         
-        _videoSettingsDirectory = Application.dataPath + @"\Settings\VideoSettings.json";
+        _videoSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\VideoSettings.json";
         videoSettingsProfile = JsonUtility.FromJson<VideoSettingsProfile>(File.ReadAllText(_videoSettingsDirectory));
     }
 

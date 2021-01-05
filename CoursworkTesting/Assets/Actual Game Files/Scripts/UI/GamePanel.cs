@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,15 +9,18 @@ public class GamePanel : MonoBehaviour
     [Header("Text")] 
     [SerializeField] private Text difficultyText;
     [SerializeField] private Text bloodText;
+    [SerializeField] private Text sensitivityText;
     [Space] 
     
     [Header("Scrollers")] 
     [SerializeField] private Scrollbar difficultyScroller;
     [SerializeField] private Scrollbar bloodScroller;
+    [SerializeField] private Slider sensitivitySlider;
     [Space] 
     
     [Header("GameObjects")] 
     [SerializeField] private GameManagerScript gameManager;
+    [SerializeField] private PlayerMovement playerMovement;
     [Space]
 
     public GameSettingsProfile gameSettingsProfile;
@@ -24,7 +28,7 @@ public class GamePanel : MonoBehaviour
     
     private void OnEnable()
     {
-        _gameSettingsDirectory = Application.dataPath + @"\Settings\GameSettings.json";
+        _gameSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\GameSettings.json";
         gameSettingsProfile = JsonUtility.FromJson<GameSettingsProfile>(File.ReadAllText(_gameSettingsDirectory));
         InitializeScrollers();
     }
@@ -33,6 +37,7 @@ public class GamePanel : MonoBehaviour
     {
         difficultyScroller.value = gameSettingsProfile.difficulty;
         bloodScroller.value = gameSettingsProfile.blood;
+        sensitivitySlider.value = gameSettingsProfile.sensitivity;
     }
 
     public void UpdateDifficultyText(float value)
@@ -47,13 +52,24 @@ public class GamePanel : MonoBehaviour
         if (Math.Abs(value) < 0.1) bloodText.text = "No";
         else if (Math.Abs(value - 1) < 0.1) bloodText.text = "Yes";
     }
+
+    public void UpdateSensitivityText(float value)
+    {
+        var text = value.ToString(CultureInfo.InvariantCulture);
+        if (text.Length > 4) sensitivityText.text = text.Substring(0, 4);
+
+        if (playerMovement == null) return;
+        playerMovement.userDefinedSens = value;
+        Debug.Log("playerMovementScript is null");
+    }
     
     public void WriteGameSettings()
     {
         var newProfile = new GameSettingsProfile
         {
             blood = bloodScroller.value,
-            difficulty = difficultyScroller.value
+            difficulty = difficultyScroller.value,
+            sensitivity = sensitivitySlider.value
         };
         
         File.WriteAllText(_gameSettingsDirectory, JsonUtility.ToJson(newProfile));

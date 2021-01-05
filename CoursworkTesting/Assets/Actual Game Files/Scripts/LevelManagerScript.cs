@@ -9,7 +9,7 @@ public class LevelManagerScript : MonoBehaviour
     
     private void Awake()
     {
-        _levelDataPath = Application.dataPath + @"\Settings\UnlockedLevelData.json";
+        _levelDataPath = Directory.GetCurrentDirectory() + @"\Settings\UnlockedLevelData.json";
         _unlockedLevelData = JsonUtility.FromJson<UnlockedLevelData>(File.ReadAllText(_levelDataPath));
     }
 

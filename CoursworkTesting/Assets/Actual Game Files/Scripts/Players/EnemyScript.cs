@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Actual_Game_Files.Scripts;
+using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -10,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float enemyViewRadius = 15f;
     [SerializeField] private float enemyRotationSpeed = 3f;
     [SerializeField] public float health;
+    [SerializeField] private bool isPatrol;
     [Space]
     
     [Header("Objects")]
@@ -19,6 +21,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private AudioSource thisAudioSource;
     [SerializeField] private GameObject deathAudioObject;
     [SerializeField] private Transform endOfPistolTransform;
+    [SerializeField] private GameObject waypointBin;
 
     private float _timeToStartEngaging;
     private bool _hasSeenPlayer;
@@ -45,8 +48,11 @@ public class EnemyScript : MonoBehaviour
             _pistolScript.canSeePlayer = true;
             CheckEnemyFieldOfView();
         }
-        else _pistolScript.canSeePlayer = false;
-        
+        else
+        {
+            _pistolScript.canSeePlayer = false;
+            if (isPatrol && !agent.hasPath) StartRandomPatrol();
+        }
     }
 
     public void TakeDamage(float damage)
@@ -135,5 +141,23 @@ public class EnemyScript : MonoBehaviour
     private void ShootAtPlayer()
     {
         _pistolScript.Shoot();
+    }
+    
+    private Vector3 RandomNavmeshLocation()
+    {
+        var x = Random.Range(1, 10);
+        return waypointBin.transform.GetChild(x).position;
+    }
+
+    private void StartRandomPatrol()
+    {
+        agent.SetDestination(RandomNavmeshLocation());
+        StartCoroutine(WaitForPatrol(10f));
+    }
+
+    private IEnumerator WaitForPatrol(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if(!_hasSeenPlayer) StartRandomPatrol();
     }
 }

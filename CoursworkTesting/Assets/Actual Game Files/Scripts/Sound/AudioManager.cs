@@ -26,7 +26,7 @@ namespace Actual_Game_Files.Scripts
 
         private void Awake()
         {
-            _audioSettingsDirectory = Application.dataPath + @"\Settings\AudioSettings.json";
+            _audioSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\AudioSettings.json";
             audioSettingsProfile = JsonUtility.FromJson<AudioSettingsProfile>(File.ReadAllText(_audioSettingsDirectory));
             PlayMusic();
             PlayBackGroundMusic();
