@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1;
     }
+    
     private void IsPlayerRunning()
     {
         _speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
@@ -131,7 +132,9 @@ public class PlayerMovement : MonoBehaviour
         var x = Input.GetAxis("Horizontal");
         var z = Input.GetAxis("Vertical");
 
-        var newMovement = transform.right * x + transform.forward * z;
+        var t = transform;
+
+        var newMovement = t.right * x + t.forward * z;
         
         controller.Move(newMovement * (_speed * Time.deltaTime));
 

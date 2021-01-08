@@ -1501,6 +1501,7 @@ MonoBehaviour:
   groundDistanceCheck: 0.4
   jumpHeight: 1
   isPaused: 0
+  userDefinedSens: 1
 --- !u!143 &2328397513875706950
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3514,6 +3515,10 @@ PrefabInstance:
       value: Handgun_01
       objectReference: {fileID: 0}
     - target: {fileID: 1669814075106190, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672287814348484, guid: ea530e89dc913d14480baec0a57c7801, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

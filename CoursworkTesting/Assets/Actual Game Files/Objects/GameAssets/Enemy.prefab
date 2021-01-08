@@ -436,6 +436,7 @@ MonoBehaviour:
   weaponInaccuracyInDegrees: 0
   weaponShootingCooldown: 1
   pistolShotSoundName: PistolShot
+  canSeePlayer: 0
 --- !u!1 &6058013499381934280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6059517876213392362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.449009, y: -4.0305805, z: -14.305}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6059794101407230746}
@@ -1277,11 +1278,14 @@ MonoBehaviour:
   enemyViewRadius: 10
   enemyRotationSpeed: 3
   health: 5000
+  isPatrol: 0
   playerTransform: {fileID: 0}
   agent: {fileID: 6059517876213392360}
   enemyWeapon: {fileID: 6057998770513323546}
   thisAudioSource: {fileID: 8966580334887147746}
   deathAudioObject: {fileID: 1903270537464795402}
+  endOfPistolTransform: {fileID: 0}
+  waypointBin: {fileID: 0}
 --- !u!54 &6059517876213392365
 Rigidbody:
   m_ObjectHideFlags: 0
