@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\finla\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\finla\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_InitialCoursework.788314701.00" t="ExcludeRecursive" />
+    <e p="C:\Users\finla\OneDrive\Desktop\cw\Coursework\InitialCoursework" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Initial" t="Include">
+          <e p="FighterInterceptor" t="Include">
+            <e p="Script" t="Include">
+              <e p="FighterSurfacesControl.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="NewScript.cs" t="Include" />
+          </e>
+          <e p="SimplePixelUI" t="Include">
+            <e p="fonts" t="Include">
+              <e p="Font1" t="Include">
+                <e p="license.txt" t="Include" />
+                <e p="readme.txt" t="Include" />
+              </e>
+              <e p="Font2" t="Include">
+                <e p="license.txt" t="Include" />
+                <e p="readme.txt" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="New" t="Include">
+          <e p="Objects" t="Include">
+            <e p="_SNAPS_PrototypingAssets" t="Include">
+              <e p="About" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="Editor" t="Include">
+                    <e p="ReadmeEditor.cs" t="Include" />
+                  </e>
+                  <e p="Readme.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="PackageChecker" t="Include">
+                    <e p="PackageChecker.cs" t="Include" />
+                    <e p="PackageImportList.txt" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
+            <e p="Low Poly Fruits" t="Include">
+              <e p="resources" t="Include">
+                <e p="fruits_tester.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="AnimationScripts" t="Include">
+              <e p="KnifePuttingAway.cs" t="Include" />
+              <e p="RiflePuttingAwayScript.cs" t="Include" />
+              <e p="RifleShootingAnim.cs" t="Include" />
+              <e p="SelectionUICAMERA.cs" t="Include" />
+              <e p="WeaponReloadAnim.cs" t="Include" />
+              <e p="WeaponSwayAnim.cs" t="Include" />
+            </e>
+            <e p="DebugManager.cs" t="Include" />
+            <e p="DebugScript.cs" t="Include" />
+            <e p="EndTriggerScript.cs" t="Include" />
+            <e p="FaultyLightScript.cs" t="Include" />
+            <e p="GameManagerScript.cs" t="Include" />
+            <e p="HiddenDoorScript.cs" t="Include" />
+            <e p="LevelManagerScript.cs" t="Include" />
+            <e p="Players" t="Include">
+              <e p="CameraFOVScript.cs" t="Include" />
+              <e p="EnemyScript.cs" t="Include" />
+              <e p="PlayerBehaviourScript.cs" t="Include" />
+              <e p="PlayerMovement.cs" t="Include" />
+            </e>
+            <e p="Serializable" t="Include">
+              <e p="AudioSettingsProfile.cs" t="Include" />
+              <e p="GameSettingsProfile.cs" t="Include" />
+              <e p="UnlockedLevelData.cs" t="Include" />
+              <e p="VideoSettingsProfile.cs" t="Include" />
+            </e>
+            <e p="Sound" t="Include">
+              <e p="AudioManager.cs" t="Include" />
+              <e p="Sound.cs" t="Include" />
+              <e p="TutorialScript.cs" t="Include" />
+            </e>
+            <e p="UI" t="Include">
+              <e p="AudioPanel.cs" t="Include" />
+              <e p="BaseMenu.cs" t="Include" />
+              <e p="DamageIndicatorScript.cs" t="Include" />
+              <e p="DeathCameraScript.cs" t="Include" />
+              <e p="DeathCanvasScript.cs" t="Include" />
+              <e p="EscapeMenu.cs" t="Include" />
+              <e p="FadingScript.cs" t="Include" />
+              <e p="GamePanel.cs" t="Include" />
+              <e p="SelectionMenuScript.cs" t="Include" />
+              <e p="StartMenu.cs" t="Include" />
+              <e p="VideoPanel.cs" t="Include" />
+            </e>
+            <e p="Weapons" t="Include">
+              <e p="EnemyWeaponScripts" t="Include">
+                <e p="PistolScript.cs" t="Include" />
+              </e>
+              <e p="Generic" t="Include">
+                <e p="CasingBehaviour.cs" t="Include" />
+                <e p="GenericBulletBehaviour.cs" t="Include" />
+                <e p="GenericWeaponBehaviour.cs" t="Include" />
+                <e p="Magazine.cs" t="Include" />
+              </e>
+              <e p="Knife" t="Include">
+                <e p="KnifeBehaviour.cs" t="Include" />
+              </e>
+              <e p="Old" t="Include">
+                <e p="HandgunBehaviour.cs" t="Include" />
+              </e>
+              <e p="Pistol" t="Include">
+                <e p="NewPistolBehaviour.cs" t="Include" />
+                <e p="NewPistolBulletBehaviour.cs" t="Include" />
+              </e>
+              <e p="Rifle" t="Include">
+                <e p="RifleBehaviourScript.cs" t="Include" />
+              </e>
+              <e p="Shotgun" t="Include">
+                <e p="ShotgunBehaviourScript.cs" t="Include" />
+                <e p="ShotgunBulletBehaviour.cs" t="Include" />
+                <e p="ShotgunCasing.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="InitialCoursework.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
