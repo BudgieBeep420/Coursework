@@ -33,7 +33,6 @@ public class PistolScript : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 0.2f;
         _thisAudioSource = gameObject.GetComponent<AudioSource>();
         _playerTransform = GameObject.FindWithTag("Player").transform;
     }

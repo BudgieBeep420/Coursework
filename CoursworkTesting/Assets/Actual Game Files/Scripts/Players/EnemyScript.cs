@@ -33,6 +33,7 @@ public class EnemyScript : MonoBehaviour
     private bool _canDie = true;
 
 
+    /* This intialises all of the non-prefab GameObject which are referenced */
     private void Start()
     {
         _gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
@@ -43,6 +44,7 @@ public class EnemyScript : MonoBehaviour
 
     private void Update()
     {
+        /* If the enemy can see the player ... */
         if (playerTransform != null && CanSeePlayer(Vector3.Distance(playerTransform.position, transform.position)))
         {
             _pistolScript.canSeePlayer = true;
@@ -59,6 +61,9 @@ public class EnemyScript : MonoBehaviour
     {
         health -= damage;
 
+        
+        /* This validation makes sure that the enemy dies only once, when their health goes below 1 */
+        /* This is called when a bullet enters the collider of an enemy */
         if (health < 1 && _canDie)
         {
             _canDie = !_canDie;
@@ -70,6 +75,9 @@ public class EnemyScript : MonoBehaviour
 
     private void Die()
     {
+        /* This manages what happens after an enemy dies, it spawns an audio making object, as well as plays
+            the death sound, and increments the number of kills the player has gotten, then deletes the enemy object*/
+        
         deathAudioObject.transform.parent = null;
         _audioManager.Play("DeathSound", deathAudioObject.GetComponent<AudioSource>());
         _gameManagerScript.NumberOfKills++;
@@ -78,6 +86,8 @@ public class EnemyScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    
+    /* This allows for debugging */
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

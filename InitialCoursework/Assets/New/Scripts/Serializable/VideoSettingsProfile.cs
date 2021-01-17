@@ -11,3 +11,4 @@ namespace Actual_Game_Files.Scripts.Serializable
         public int fieldOfView;
     }
 }
+

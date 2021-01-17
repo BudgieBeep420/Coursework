@@ -26,6 +26,9 @@ public class GamePanel : MonoBehaviour
     public GameSettingsProfile gameSettingsProfile;
     private string _gameSettingsDirectory;
     
+    
+    /* Gets the data from the Settings folder, and sets up the toggles and sliders
+        with their correct values*/
     private void OnEnable()
     {
         _gameSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\GameSettings.json";
@@ -39,7 +42,9 @@ public class GamePanel : MonoBehaviour
         bloodScroller.value = gameSettingsProfile.blood;
         sensitivitySlider.value = gameSettingsProfile.sensitivity;
     }
-
+    
+    /* This changes all of the text values that appear next to the sliders / toggles to make
+        sure they reflect what is seen*/
     public void UpdateDifficultyText(float value)
     {
         if (Math.Abs(value) < 0.1) difficultyText.text = "Easy";
@@ -63,6 +68,7 @@ public class GamePanel : MonoBehaviour
         Debug.Log("playerMovementScript is null");
     }
     
+    /* This writes the a new game settings profile back to memory when the back button is pressed */
     public void WriteGameSettings()
     {
         var newProfile = new GameSettingsProfile
@@ -76,6 +82,7 @@ public class GamePanel : MonoBehaviour
         UpdateGameManager(newProfile);
     }
 
+    /* When an option is changed, the game manager needs to know, as other scripts need to access this data */
     private void UpdateGameManager(GameSettingsProfile newProfile)
     {
         gameManager.gameSettingsProfile = newProfile;

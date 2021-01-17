@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CameraFOVScript : MonoBehaviour
 {
+    
+    /* This initialises the FOV of the camera, as otherwise the camera would just deafault to the normal 80
+        degree FOV, this sets it to the setting the player defined.*/
     private void Start()
     {
         var videoSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\VideoSettings.json";

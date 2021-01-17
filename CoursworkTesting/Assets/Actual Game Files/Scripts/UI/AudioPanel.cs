@@ -21,11 +21,14 @@ public class AudioPanel : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
 
 
+    /* This is called when the options menu is initialised */
     private void OnEnable()
     {
         InitializeAudioSliderSettings();
     }
 
+    /* This is called to make sure the values in the sliders match what the user has inputted
+        in previous sessions*/
     private void InitializeAudioSliderSettings()
     {
         var audioProfile = audioManager.audioSettingsProfile;

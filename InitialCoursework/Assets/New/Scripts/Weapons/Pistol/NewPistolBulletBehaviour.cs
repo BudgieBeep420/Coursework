@@ -28,6 +28,8 @@ public class NewPistolBulletBehaviour : GenericBulletBehaviour
 
     private void Awake()
     {
+        /* Lots of things have to be defined at the start of the game, because prefabs cannot
+            reference objects in the scene */
         ThisBulletRb = thisBulletRb;
         ThisBullet = thisBullet;
         BulletBin = GameObject.FindWithTag("BulletBin");
@@ -38,9 +40,12 @@ public class NewPistolBulletBehaviour : GenericBulletBehaviour
         GameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         IsBulletOfPlayer = false;
         
+        /* Validation is needed as if the player has died, this will produce an error */
+        
         if(GameObject.FindWithTag(PlayerTag) != null)
             PlayerBehaviourScript = GameObject.FindWithTag(PlayerTag).GetComponent<PlayerBehaviourScript>();
 
+        /* This implements the inherited behaviours for the bullet */
         SetBulletSpeed();
         SetBulletParent();
     }

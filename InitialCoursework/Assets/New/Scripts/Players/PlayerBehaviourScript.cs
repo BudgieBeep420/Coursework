@@ -69,6 +69,7 @@ public class PlayerBehaviourScript : MonoBehaviour
 
     private void Start()
     {
+        /* Updates health display */
         healthText.text = "Health: " + health + "/ " + maxHealth;
         weaponImages[(int) currentActiveWeapon].color = Color.green;
     }
@@ -122,12 +123,17 @@ public class PlayerBehaviourScript : MonoBehaviour
         }
     }
     
+    /* Called when a bullet enters the player */
     public void TakeDamage(float damageTaken)
     {
+        /* This shows a blood animations */
         bloodImageOnHud.SetActive(true);
         health -= damageTaken;
+
+        /* Now update health display */
         healthText.text = "Health: " + health + "/ " + maxHealth;
 
+        /* Handles dying if you are below 0 hp */
         if (health <= 0)
         {
             Die();

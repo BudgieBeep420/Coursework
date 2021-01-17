@@ -44,13 +44,45 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/05250243-5982-472D-92DA-7F939C7F8164/8a/edebf5d5/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/9a/5236fd6b/DateTime.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/BaseMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BD9566CC-A225-41E5-8AD2-8D1FA2849830/16/a11dfe0a/JsonUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Sound/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Serializable/AudioSettingsProfile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/VideoPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/AudioPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/GameManagerScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/Magazine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/GenericBulletBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/GenericWeaponBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/Weapons/Generic/GenericWeaponBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBulletBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/GamePanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/CameraFOVScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerBehaviourScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Serializable/VideoSettingsProfile.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/NewScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Initial/Scripts/NewScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/BaseMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Serializable/AudioSettingsProfile.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Sound/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/AudioPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/VideoPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Players/CameraFOVScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/GamePanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Serializable/VideoSettingsProfile.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/GenericWeaponBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/GenericBulletBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBulletBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerBehaviourScript.cs" />
       </list>
     </option>
   </component>
@@ -63,6 +95,7 @@
   <component name="PropertiesComponent">
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="discord-application" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -72,22 +105,19 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="selectedOptions">
-        <set />
-      </option>
       <method v="2" />
     </configuration>
     <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="selectedOptions">
-        <set />
-      </option>
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a5f985ab-bc1a-4a3a-827c-c1741bf045c1" name="Default Changelist" comment="" />
@@ -97,11 +127,16 @@
       <updated>1610131046972</updated>
       <workItem from="1610131055216" duration="4634000" />
       <workItem from="1610239546377" duration="931000" />
+      <workItem from="1610368174360" duration="13034000" />
+      <workItem from="1610545516744" duration="10687000" />
+      <workItem from="1610625961711" duration="4461000" />
+      <workItem from="1610653971786" duration="2367000" />
+      <workItem from="1610667956755" duration="599000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />

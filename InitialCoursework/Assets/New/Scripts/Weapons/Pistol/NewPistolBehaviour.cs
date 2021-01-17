@@ -77,10 +77,10 @@ public class NewPistolBehaviour : GenericWeaponBehaviour
 
     private void Update()
     {
+        /* This simply uses the functions given in the base class */
         ShootingWeaponCheck();
         CheckReload();
 
-        if (Input.GetKeyDown(KeyCode.F)) UpdateFlashLight();
     }
 
     private void UpdateFlashLight()
