@@ -38,8 +38,8 @@ public class PlayerBehaviourScript : MonoBehaviour
     [Space]
     
     [Header("Game Settings")]
-    [SerializeField] private float health;
-    [SerializeField] private float maxHealth;
+    [SerializeField] public float health;
+    [SerializeField] public float maxHealth;
     [Space]
     
     [Header("Weapons Active on this mission")]
@@ -54,6 +54,8 @@ public class PlayerBehaviourScript : MonoBehaviour
     private const KeyCode PistolKey = KeyCode.Alpha2;
     private const KeyCode RifleKey = KeyCode.Alpha3;
     private const KeyCode ShotgunKey = KeyCode.Alpha4;
+
+    public const int BaseHealth = 10000;
 
     private GenericWeaponBehaviour _gwb;
     

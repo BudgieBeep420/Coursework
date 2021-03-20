@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1223202222242541994}
   m_Layer: 10
   m_Name: Laptop_01_snaps001
-  m_TagString: Untagged
+  m_TagString: NonStatic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

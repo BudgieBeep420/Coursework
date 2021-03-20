@@ -16,6 +16,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &6766601329160472474
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718952021885097729}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0.9
+  m_AngularDrag: 0.9
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &6766601328455447262
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26,6 +42,22 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.1
   m_Drag: 0.4
+  m_AngularDrag: 0.2
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!54 &6766601329552540782
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5847833048832895334}
+  serializedVersion: 2
+  m_Mass: 4
+  m_Drag: 0.6
   m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -43,7 +75,7 @@ GameObject:
   - component: {fileID: 6766601328469740940}
   m_Layer: 10
   m_Name: ObjectsPhysicsTest
-  m_TagString: Untagged
+  m_TagString: NonStatic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,38 +109,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -83.842, z: 0}
---- !u!54 &6766601329160472474
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2718952021885097729}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0.9
-  m_AngularDrag: 0.9
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &6766601329552540782
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5847833048832895334}
-  serializedVersion: 2
-  m_Mass: 4
-  m_Drag: 0.6
-  m_AngularDrag: 0.2
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!54 &6766601329739544582
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,6 +192,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet_01_snaps001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6944405275685617519, guid: 19db22aa4fa73d84988e91776628fb4a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19db22aa4fa73d84988e91776628fb4a, type: 3}
 --- !u!4 &4447506669842641907 stripped
@@ -267,6 +272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ComputerDesk_01_snaps001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8870355397868540550, guid: cff41089c4e8ca848a2cc236f3f986a6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cff41089c4e8ca848a2cc236f3f986a6, type: 3}
 --- !u!4 &2809710920071845373 stripped
@@ -341,6 +351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Computer_01_snaps001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260451270937773364, guid: 9a045084f2afd1f4b832233a923a350d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a045084f2afd1f4b832233a923a350d, type: 3}
@@ -423,6 +438,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PenHolder_01_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 7416407540884703670, guid: e0c5cc7588a8aa4478681685f913a472,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0c5cc7588a8aa4478681685f913a472, type: 3}
 --- !u!1 &4254656261711461229 stripped
@@ -504,6 +524,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Desklamp_01_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 7552953203715631590, guid: 8256baf6f2f4b3a44b0afdf4107644f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8256baf6f2f4b3a44b0afdf4107644f1, type: 3}
 --- !u!4 &3834453227880424905 stripped
@@ -523,6 +548,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CoffeeMug_01_snaps001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670820165132772762, guid: ee7d9a95bcde84247a6fe13a634e7e1e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5670820166382839853, guid: ee7d9a95bcde84247a6fe13a634e7e1e,
         type: 3}
@@ -654,6 +684,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monitor_01_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 2627170535099788102, guid: 3209a370d0b20d440bcd701bd46c5722,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3209a370d0b20d440bcd701bd46c5722, type: 3}
 --- !u!4 &8760162769798380977 stripped
@@ -728,6 +763,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Printer01_snaps001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188292347259012491, guid: 1836e11cb6671aa4e83d5939e5f72585,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1836e11cb6671aa4e83d5939e5f72585, type: 3}
@@ -804,6 +844,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaperTray_01_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 5235638203006815051, guid: bc0b29f58d2180e4f97b4839bf80e442,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0b29f58d2180e4f97b4839bf80e442, type: 3}
 --- !u!4 &1535574891283262326 stripped
@@ -879,6 +924,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet_04_snaps001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8672917464329119317, guid: a4011609023b62e4f8ece12685cf77c7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4011609023b62e4f8ece12685cf77c7, type: 3}
 --- !u!4 &2718952021633501716 stripped
@@ -904,6 +954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Laptop_01_snaps001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265979057566832023, guid: f218b3ed32bf26444a93c694ced6ae81,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5265979057641304860, guid: f218b3ed32bf26444a93c694ced6ae81,
         type: 3}
@@ -1035,6 +1090,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PotPlant_01_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 918841124080266509, guid: 7c15a4ea26086e940a5b75462b6c3f65,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c15a4ea26086e940a5b75462b6c3f65, type: 3}
 --- !u!4 &5847833049410314197 stripped
@@ -1060,6 +1120,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PotPlant_02_snaps001
+      objectReference: {fileID: 0}
+    - target: {fileID: 30902728282961948, guid: eb781fa35ead18e4ab0252ab88ad2ed8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 30902729021683166, guid: eb781fa35ead18e4ab0252ab88ad2ed8,
         type: 3}
@@ -1191,6 +1256,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelf_03_snaps001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7010144757483243247, guid: bcc1a676422e7f847bb4118f72c8abfd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcc1a676422e7f847bb4118f72c8abfd, type: 3}
 --- !u!4 &4372649499243118534 stripped
@@ -1210,6 +1280,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OfficeChair_01_snaps001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247815899603910626, guid: f1da3cefe9bc52149b052f89962756c6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3247815899989041378, guid: f1da3cefe9bc52149b052f89962756c6,
         type: 3}

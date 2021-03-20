@@ -22133,6 +22133,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3085577298483425775, guid: 390b8a15f64d07a44a280c6544089671,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Actual_Game_Files.Scripts.UI.BaseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085577298483425775, guid: 390b8a15f64d07a44a280c6544089671,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085577298483425775, guid: 390b8a15f64d07a44a280c6544089671,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085577298483425775, guid: 390b8a15f64d07a44a280c6544089671,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 548492907}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390b8a15f64d07a44a280c6544089671, type: 3}
 --- !u!1 &547973945 stripped

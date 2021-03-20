@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] public float userDefinedSens = 1f;
 
+    private GameManagerScript gmb;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         var gameSettingsDirectory = Directory.GetCurrentDirectory() + @"\Settings\GameSettings.json";
         var gameSettingsProfile = JsonUtility.FromJson<GameSettingsProfile>(File.ReadAllText(gameSettingsDirectory));
         userDefinedSens = gameSettingsProfile.sensitivity;
+        gmb = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }
 
     private void LateUpdate()
@@ -90,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
     private void IsPlayerRunning()
     {
         _speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+        _speed *= gmb.currentDifficulty.playerSpeedMult;
     }
 
     /*private void IsPlayerCrouching()

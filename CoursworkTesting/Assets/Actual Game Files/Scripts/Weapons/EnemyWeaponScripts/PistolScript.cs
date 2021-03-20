@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Actual_Game_Files.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -47,8 +48,7 @@ public class PistolScript : MonoBehaviour
             audioManager.Play("OutOfAmmoClick", _thisAudioSource);
             return;
         }
-        
-        
+
         numberOfBullets--;
         weaponAnimator.SetBool(HasShot, true);
         audioManager.Play(pistolShotSoundName, _thisAudioSource);

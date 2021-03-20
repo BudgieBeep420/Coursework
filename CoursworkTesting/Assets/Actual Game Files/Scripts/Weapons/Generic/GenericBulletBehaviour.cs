@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,8 +22,8 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
     private bool _isBloodEnabled;
     private const float PushBackFactor = 10;
     
-    // This is gonna be changed depending on the difficulty
-    private float _enemyDamageModifier = 0.2f;
+    
+    private const float EnemyDamageModifier = 0.2f;
     
     
 
@@ -72,7 +73,17 @@ public abstract class GenericBulletBehaviour : MonoBehaviour
     {
         var lower = Convert.ToSingle(baseDamage - 0.1 * baseDamage);
         var upper = Convert.ToSingle(baseDamage + 0.1 * baseDamage);
-        return Convert.ToSingle(!isPlayer ? Math.Round(Random.Range(lower, upper)) : Math.Round(_enemyDamageModifier * Random.Range(lower, upper)));
+        var enemyDamageMult = GameManager.currentDifficulty.enemyDamageMult;
+        var playerDamageMult = GameManager.currentDifficulty.playerDamageMult;
+        
+        Debug.Log(Convert.ToSingle(!isPlayer 
+            ? Math.Round(playerDamageMult * Random.Range(lower, upper)) 
+            : Math.Round(enemyDamageMult * EnemyDamageModifier * Random.Range(lower, upper))));
+        
+        
+        return Convert.ToSingle(!isPlayer 
+            ? Math.Round(playerDamageMult * Random.Range(lower, upper)) 
+            : Math.Round(enemyDamageMult * EnemyDamageModifier * Random.Range(lower, upper)));
     }
     
     protected void SetBulletSpeed()

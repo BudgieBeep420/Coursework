@@ -60,7 +60,6 @@ public class GamePanel : MonoBehaviour
 
         if (playerMovement == null) return;
         playerMovement.userDefinedSens = value;
-        Debug.Log("playerMovementScript is null");
     }
     
     public void WriteGameSettings()
@@ -79,5 +78,8 @@ public class GamePanel : MonoBehaviour
     private void UpdateGameManager(GameSettingsProfile newProfile)
     {
         gameManager.gameSettingsProfile = newProfile;
+        
+        var value = difficultyScroller.value;
+        gameManager.UpdateCurrentDifficulty(value);
     }
 }

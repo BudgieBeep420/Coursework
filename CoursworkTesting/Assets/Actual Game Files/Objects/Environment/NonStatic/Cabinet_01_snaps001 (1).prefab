@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3370067064046250449}
   m_Layer: 10
   m_Name: Cabinet_01_snaps001 (1)
-  m_TagString: Untagged
+  m_TagString: NonStatic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

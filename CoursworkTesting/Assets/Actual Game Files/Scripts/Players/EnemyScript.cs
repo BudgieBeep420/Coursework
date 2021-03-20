@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.Remoting.Messaging;
 using Actual_Game_Files.Scripts;
 using UnityEditor.U2D;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float enemyRotationSpeed = 3f;
     [SerializeField] public float health;
     [SerializeField] private bool isPatrol;
+    [SerializeField] private float enemyViewAngle = 40f;
     [Space]
     
     [Header("Objects")]
@@ -29,6 +31,8 @@ public class EnemyScript : MonoBehaviour
     private AudioManager _audioManager;
     private GameManagerScript _gameManagerScript;
 
+    private float enemyHealthMult;
+
     private bool _isBlocked;
     private bool _canDie = true;
 
@@ -39,7 +43,11 @@ public class EnemyScript : MonoBehaviour
         _gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         _pistolScript = enemyWeapon.GetComponent<PistolScript>();
         _audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
-        _timeToStartEngaging = Random.Range(0.5f, 3f);
+        _timeToStartEngaging = Random.Range(0.5f, 2f);
+        
+        /* Grabs the value of the enemy's health */
+        health *= _gameManagerScript.currentDifficulty.enemyHealthMult;
+        Debug.Log("New enemy health: " + health);
     }
 
     private void Update()
@@ -60,8 +68,9 @@ public class EnemyScript : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        _hasSeenPlayer = true;
+        StartCoroutine(CountdownTillAttack());
 
-        
         /* This validation makes sure that the enemy dies only once, when their health goes below 1 */
         /* This is called when a bullet enters the collider of an enemy */
         if (health < 1 && _canDie)
@@ -111,11 +120,16 @@ public class EnemyScript : MonoBehaviour
     private void CheckEnemyFieldOfView()
     {
         if (playerTransform == null) return;
-        
-        var distance = Vector3.Distance(playerTransform.position, transform.position);
+
+        var playerPosition = playerTransform.position;
+        var thisEnemyPosition = transform.position;
+        var distance = Vector3.Distance(playerPosition, thisEnemyPosition);
+        var angle = Vector3.Angle(transform.forward, playerPosition - thisEnemyPosition);
         
         if (distance > enemyViewRadius) return;
 
+        if (angle > enemyViewAngle && !_hasSeenPlayer) return;
+        
         if (!_hasSeenPlayer)
         {
             StartCoroutine(CountdownTillAttack());
@@ -131,7 +145,7 @@ public class EnemyScript : MonoBehaviour
     
     private IEnumerator CountdownTillAttack()
     {
-        yield return new WaitForSeconds(_timeToStartEngaging);
+        yield return new WaitForSeconds(_timeToStartEngaging * _gameManagerScript.currentDifficulty.enemyReactionMult);
         ShootAtPlayer();
     }
 

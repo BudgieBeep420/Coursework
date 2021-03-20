@@ -1495,11 +1495,11 @@ MonoBehaviour:
   audioManager: {fileID: 0}
   feetAudioSource: {fileID: 2328397514554645274}
   aimSensitivity: 200
-  walkSpeed: 4
-  runSpeed: 8
+  walkSpeed: 3.5
+  runSpeed: 6.5
   strengthOfGravity: 13
   groundDistanceCheck: 0.4
-  jumpHeight: 1
+  jumpHeight: 0.5
   isPaused: 0
   userDefinedSens: 1
 --- !u!143 &2328397513875706950
