@@ -21,19 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a5f985ab-bc1a-4a3a-827c-c1741bf045c1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../CourseWorkDocumentation.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../CourseWorkDocumentation.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/Cabinet.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/Door.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/Enemy.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/GreenLight.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/Monitor.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/Plant.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/Shotgun.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/Sound.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/UIElement.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/a.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/gam1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/handgun.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pics/wall.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CoursworkTesting/.idea/.idea.CoursworkTesting/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CoursworkTesting/.idea/.idea.CoursworkTesting/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/UI/SelectionMenuScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/UI/SelectionMenuScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InitialCoursework/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InitialCoursework/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/LevelManagerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/LevelManagerScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/Players/EnemyScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/Players/EnemyScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/Weapons/EnemyWeaponScripts/PistolScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/Weapons/EnemyWeaponScripts/PistolScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +39,36 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/9a/5236fd6b/DateTime.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Serializable/GameSettingsProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/BaseMenu.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BD9566CC-A225-41E5-8AD2-8D1FA2849830/16/a11dfe0a/JsonUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Sound/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Serializable/AudioSettingsProfile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/EnemyWeaponScripts/PistolScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Shotgun/ShotgunCasing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/VideoPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/AudioPanel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/GameManagerScript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/Magazine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/GenericBulletBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/CasingBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Generic/GenericWeaponBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/Weapons/Generic/GenericWeaponBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBulletBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/GamePanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Knife/KnifeBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BD9566CC-A225-41E5-8AD2-8D1FA2849830/16/a11dfe0a/JsonUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/LevelManagerScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/AnimationScripts/SelectionUICAMERA.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/GameManagerScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/Weapons/Generic/GenericWeaponBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/EnemyScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/CameraFOVScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerBehaviourScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Serializable/VideoSettingsProfile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Initial/Scripts/NewScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Serializable/UnlockedLevelData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Sound/Sound.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -83,6 +89,10 @@
         <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBulletBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerBehaviourScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/LevelManagerScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/EnemyWeaponScripts/PistolScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Players/EnemyScript.cs" />
       </list>
     </option>
   </component>
@@ -97,7 +107,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="discord-application" />
+    <property name="settings.editor.selected.configurable" value="CodeLensConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -132,6 +142,10 @@
       <workItem from="1610625961711" duration="4461000" />
       <workItem from="1610653971786" duration="2367000" />
       <workItem from="1610667956755" duration="599000" />
+      <workItem from="1618928330346" duration="5959000" />
+      <workItem from="1618937866459" duration="76000" />
+      <workItem from="1618937995855" duration="2130000" />
+      <workItem from="1618947005434" duration="5855000" />
     </task>
     <servers />
   </component>
@@ -154,5 +168,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="461" y="165" key="SettingsEditor" timestamp="1618948867330">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618948867330" />
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1618948867703">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1618948867703" />
   </component>
 </project>

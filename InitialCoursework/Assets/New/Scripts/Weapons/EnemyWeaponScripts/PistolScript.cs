@@ -33,13 +33,14 @@ public class PistolScript : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 0.2f;
         _thisAudioSource = gameObject.GetComponent<AudioSource>();
         _playerTransform = GameObject.FindWithTag("Player").transform;
     }
     
     public void Shoot()
     {
+        /* This function enters a recursive loop, which shoots all the pistols bullets */
+        
         StartCoroutine(ShootingCooldown(weaponShootingCooldown));
         if (_playerTransform == null || !canSeePlayer) return;
         
@@ -49,6 +50,7 @@ public class PistolScript : MonoBehaviour
             return;
         }
         
+        /* This does the actual mechanics of the gun shot */
         
         numberOfBullets--;
         weaponAnimator.SetBool(HasShot, true);
@@ -63,6 +65,10 @@ public class PistolScript : MonoBehaviour
     //This was changed to stop when the player turns a corner after being spotted
     private IEnumerator ShootingCooldown(float time)
     {
+        /* Takes a temp variable, whether the enemy saw the player when it entered this method,
+            then after waiting a given time, it checks if it can still see the player. If not, it 
+            aborts shooting, and recursively carrys on waiting until it sees the player again 
+            (i.e. it is on alert mode */
         var x = canSeePlayer;
         yield return new WaitForSeconds(Random.Range(0.3f * time, time));
         if(x == canSeePlayer) Shoot();
