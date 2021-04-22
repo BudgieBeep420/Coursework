@@ -34,6 +34,11 @@ namespace Actual_Game_Files.Scripts
 
         public void WriteAudioSettings()
         {
+            /* This does 3 things: updates the AudioSettingsProfile inside this script,
+                as well as writing this new file to the appropriate directory, then 
+                it resets the music and background sounds as they don't automatically
+                update*/
+            
             audioSettingsProfile.globalVolume = globalVolSlider.value;
             audioSettingsProfile.pitch = pitchSlider.value * 3;
             audioSettingsProfile.musicVolume = musicVolSlider.value;
@@ -45,6 +50,10 @@ namespace Actual_Game_Files.Scripts
         public void Play(string nameOfSound, AudioSource desiredAudioSource)
         {
             // ReSharper disable once InconsistentNaming
+            /* This part is called whenever another script wants to play a sound
+                First, it queries  the array using LINQ to find the appropriate name
+                and then plays it at the desired place.*/
+            
             var _sound = Array.Find(sounds,sound => sound.soundName == nameOfSound);
             _sound.audioSource = desiredAudioSource;
 
@@ -59,6 +68,9 @@ namespace Actual_Game_Files.Scripts
 
         private void SetVolumeAndPitch(Sound sound, AudioSource audioSource)
         {
+            /* This function is called every time a sound is played. It applies the users
+                predefined audio settings to the sound clip and sound source*/
+            
             audioSource.volume = sound.volume * audioSettingsProfile.globalVolume;
 
             if (sound.soundName == "InGameMusic")

@@ -22,12 +22,9 @@
     <list default="true" id="a5f985ab-bc1a-4a3a-827c-c1741bf045c1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../CourseWorkDocumentation.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../CourseWorkDocumentation.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CoursworkTesting/.idea/.idea.CoursworkTesting/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CoursworkTesting/.idea/.idea.CoursworkTesting/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/UI/SelectionMenuScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/UI/SelectionMenuScript.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InitialCoursework/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InitialCoursework/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/LevelManagerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/LevelManagerScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/Players/EnemyScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/Players/EnemyScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/Weapons/EnemyWeaponScripts/PistolScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/Weapons/EnemyWeaponScripts/PistolScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/Sound/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/Sound/AudioManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New/Scripts/Sound/Sound.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New/Scripts/Sound/Sound.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +52,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Pistol/NewPistolBulletBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/UI/GamePanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/EndTriggerScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/HiddenDoorScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Weapons/Knife/KnifeBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BD9566CC-A225-41E5-8AD2-8D1FA2849830/16/a11dfe0a/JsonUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/LevelManagerScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/AnimationScripts/SelectionUICAMERA.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/FaultyLightScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/GameManagerScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/New/Scripts/Players/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../CoursworkTesting/Assets/Actual Game Files/Scripts/Weapons/Generic/GenericWeaponBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
@@ -77,7 +77,6 @@
         <option value="$PROJECT_DIR$/Assets/Initial/Scripts/NewScript.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/BaseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/Serializable/AudioSettingsProfile.cs" />
-        <option value="$PROJECT_DIR$/Assets/New/Scripts/Sound/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/AudioPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/VideoPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/Players/CameraFOVScript.cs" />
@@ -93,6 +92,8 @@
         <option value="$PROJECT_DIR$/Assets/New/Scripts/UI/SelectionMenuScript.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/Weapons/EnemyWeaponScripts/PistolScript.cs" />
         <option value="$PROJECT_DIR$/Assets/New/Scripts/Players/EnemyScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Sound/Sound.cs" />
+        <option value="$PROJECT_DIR$/Assets/New/Scripts/Sound/AudioManager.cs" />
       </list>
     </option>
   </component>
@@ -146,6 +147,7 @@
       <workItem from="1618937866459" duration="76000" />
       <workItem from="1618937995855" duration="2130000" />
       <workItem from="1618947005434" duration="5855000" />
+      <workItem from="1619045563289" duration="5446000" />
     </task>
     <servers />
   </component>
