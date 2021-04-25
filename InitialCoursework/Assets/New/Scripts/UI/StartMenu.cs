@@ -15,6 +15,7 @@ namespace Actual_Game_Files.Scripts.UI
         protected override AudioManager AudioManager { get; set; }
         protected override AudioSource ThisAudioSource { get; set; }
 
+        /*Gathers the different variables needed */
         private void Awake()
         {
             PanelArray = panels;
@@ -22,6 +23,7 @@ namespace Actual_Game_Files.Scripts.UI
             ThisAudioSource = gameObject.GetComponent<AudioSource>();
         }
 
+        /* These functions are called when their respective buttons are pressed*/
         public void CloseGame()
         {
             Application.Quit();
