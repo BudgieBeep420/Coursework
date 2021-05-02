@@ -27,6 +27,7 @@ public class EscapeMenu : BaseMenu
         ThisAudioSource = gameObject.GetComponent<AudioSource>();
     }
 
+    /* These functions are called when the respective buttons are pressed */
     public void LoadMainMenu()
     {
         Time.timeScale = 1;

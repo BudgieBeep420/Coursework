@@ -12,6 +12,8 @@ public class SelectionMenuScript : MonoBehaviour
     [SerializeField] private GameObject thirdButton;
     
 
+    /* Reads the unlocked level data from the appropriate directory, then only shows the buttons that are
+        applicable*/
     private void OnEnable()
     {
         var levelUnlockedDirectory = Directory.GetCurrentDirectory() + @"\Settings\UnlockedLevelData.json";

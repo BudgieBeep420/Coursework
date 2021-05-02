@@ -20,6 +20,7 @@ public class DeathCanvasScript : MonoBehaviour
         Debug.Log("Current Scene name is: " + _currentSceneName);
     }
 
+    /* These are called when the respective buttons are pressed */
     public void RestartMap()
     {
         SceneManager.LoadScene(_currentSceneName);

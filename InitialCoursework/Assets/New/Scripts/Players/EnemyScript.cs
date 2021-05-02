@@ -45,18 +45,14 @@ public class EnemyScript : MonoBehaviour
     {
         if (playerTransform != null && CanSeePlayer(Vector3.Distance(playerTransform.position, transform.position)))
         {
-            _pistolScript.canSeePlayer = true;
             CheckEnemyFieldOfView();
-        }
-        else
-        {
-            _pistolScript.canSeePlayer = false;
-            if (isPatrol && !agent.hasPath) StartRandomPatrol();
         }
     }
 
     public void TakeDamage(float damage)
     {
+        /* This is called every time a bullet enters the enemy. It decreases the health float
+            in the enemy it hits. */
         health -= damage;
 
         if (health < 1 && _canDie)
@@ -70,6 +66,8 @@ public class EnemyScript : MonoBehaviour
 
     private void Die()
     {
+        /* Does a death animation, as well as plays a death sound when called */
+        
         deathAudioObject.transform.parent = null;
         _audioManager.Play("DeathSound", deathAudioObject.GetComponent<AudioSource>());
         _gameManagerScript.NumberOfKills++;
@@ -86,9 +84,14 @@ public class EnemyScript : MonoBehaviour
 
     private bool CanSeePlayer(float distance)
     {
+        /* Sends out a ray between the enemy and the player */
+        
         _isBlocked = false;
         var ray = new Ray(transform.position, 
             (playerTransform.position - transform.position).normalized); ;
+        
+        /* Checks any objects the ray hits, if its a player, it is fine, if it is a piece of the environment
+            it will cause it to return false*/
         
         if (Physics.Raycast(ray, out var hit, distance))
         {
@@ -97,7 +100,9 @@ public class EnemyScript : MonoBehaviour
         
         return !_isBlocked;
     }
-
+    
+    /* This is called every frame. It makes sure the player exists, then if the player
+        is inside the Field of View, it will attack the player*/
     private void CheckEnemyFieldOfView()
     {
         if (playerTransform == null) return;
@@ -119,6 +124,7 @@ public class EnemyScript : MonoBehaviour
         MakeGunBarrelPointAtTarget();
     }
     
+    /* This is called to make the enemies' logic wait a few seconds until engaging */
     private IEnumerator CountdownTillAttack()
     {
         yield return new WaitForSeconds(_timeToStartEngaging);
@@ -127,6 +133,7 @@ public class EnemyScript : MonoBehaviour
 
     private void MakeEnemyFaceTarget()
     {
+        /* This turns the CharacterController around to look at the player, within certain bounds */
         var direction = (playerTransform.position - transform.position).normalized;
         var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * enemyRotationSpeed);
@@ -134,6 +141,8 @@ public class EnemyScript : MonoBehaviour
 
     private void MakeGunBarrelPointAtTarget()
     {
+        /* This deals with the fact that the gun isnt looking at the player when the enemy looks at the
+            player*/
         endOfPistolTransform.LookAt(playerTransform);
         endOfPistolTransform.Rotate(Vector3.right, 90f);
     }

@@ -51,6 +51,4 @@ public class AudioPanel : MonoBehaviour
     {
         musicVolumeText.text = Math.Round(value * 100).ToString(CultureInfo.InvariantCulture) + "%";
     }
-
-
 }

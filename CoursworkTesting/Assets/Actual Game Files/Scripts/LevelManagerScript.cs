@@ -24,4 +24,16 @@ public class LevelManagerScript : MonoBehaviour
         _unlockedLevelData.hasCompletedM1 = true;
         File.WriteAllText(_levelDataPath, JsonUtility.ToJson(_unlockedLevelData));
     }
+    
+    public void FinishedM2()
+    {
+        _unlockedLevelData.hasCompletedM2 = true;
+        File.WriteAllText(_levelDataPath, JsonUtility.ToJson(_unlockedLevelData));
+    }
+    
+    public void FinishedM3()
+    {
+        _unlockedLevelData.hasCompletedM3 = true;
+        File.WriteAllText(_levelDataPath, JsonUtility.ToJson(_unlockedLevelData));
+    }
 }
